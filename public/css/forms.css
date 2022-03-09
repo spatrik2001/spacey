@@ -1,0 +1,25 @@
+.bd-callout .bd-callout-warning {
+    border: 1px solid lightgray;
+    border-left: 4px solid tomato;
+    border-radius: 0.3em;
+}
+
+.form-control label,
+.form-control input {
+    display: block;
+    width: 100%;
+}
+
+.form-control input {
+    border: 1px solid #a1a1a1;
+    font: inherit;
+    border-radius: 2px;
+}
+
+.form-control input:focus {
+    outline-color: #00695c;
+}
+
+textarea {
+    resize: none;
+}

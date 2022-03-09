@@ -1,0 +1,39 @@
+<%- include('../includes/head.ejs') %>
+<%- include('../includes/navigation.ejs') %>
+
+<% if (prods.length > 0) { %>
+    <h3 class="py-4 text-center">Termékek (<%= prods.length %>)</h3>
+    <div class="grid pt-3">
+        <% for (let product of prods) { %>
+            <article class="card product-item text-center">
+                <header class="card__header">
+                    <h2 class="product__title">
+                        <%= product.title %>
+                    </h2>
+                </header>
+                <div class="card__image">
+                    <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+                </div>
+                <div class="card__content">
+                    <h3 class="product__price"><%= product.price %> Ft</h3>
+                    <p class="product__description">
+                        <%= product.description %>
+                    </p>
+                </div>
+                <div class="card__actions">
+                    <a href="/products/<%= product._id %>" class="btn">Adatok</a>
+                    <% if (isAuthenticated) { %>
+                        <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+                    <% } %>
+                </div>
+            </article>
+            <% } %>
+    </div>
+    <% } else { %>
+        <div class="d-flex flex-column align-items-center align-middle pt-5">
+            <h3 class="py-4">Nem találhatók termékek!</h3>
+            <a href="/"><button class="specialButton btn-sm mx-auto">Vissza a főoldalra</button></a>
+            <img class="img-fluid center" src="/img/empty_product_logo.png" alt="Termékek">
+        </div>
+    <% } %>
+<%- include('../includes/end.ejs') %>

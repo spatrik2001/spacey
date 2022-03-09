@@ -1,0 +1,83 @@
+<%- include('includes/head.ejs') %>
+<%- include('includes/navigation.ejs') %>
+    <% if (errorMessage) { %>
+        <div class="text-center">
+            <%= errorMessage %>
+        </div>
+    <% } %>
+    <div class="p-5 text-center bg-image">
+        <div class="container h-100">
+            <div class="d-flex justify-content-center align-items-center h-100">
+                <div class="col-lg-10 text-center text-white">
+                    <h1>Bolt</h1>
+                    <hr class="divider my-4">
+                    <p class="font-weight-light mb-5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed nobis laboriosam, mollitia accusantium quam excepturi culpa quo quia officiis eum necessitatibus asperiores voluptatem minus ipsa expedita! Molestiae suscipit ad quis?</p>
+                    <button type="button" class="btn btn-primary btn-lg">Lorem Ipsum</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2 class="text-center py-5">Új termékeink</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card text-center">
+                    <div class="card-header"><i class="fas fa-star"> Kiemelt</i></div>
+                    <div class="card-body">
+                        <h5 class="card-title">Termék #1</h5>
+                        <img class="card-img-top" src="https://picsum.photos/300/200" alt="Termék #1">
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio est officia quisquam consequatur. Veniam obcaecati excepturi, in hic saepe totam quaerat similique iste laborum nam illo nostrum nisi dignissimos modi.</p>
+                        <a href="#"><button class="specialButton">Vásárlás</button></a>
+                    </div>
+                    <div class="card-footer text-muted">Akció: 2022.01.08-ig (30%)</div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card text-center">
+                    <div class="card-header"><i class="fas fa-star"> Kiemelt</i></div>
+                    <div class="card-body">
+                        <h5 class="card-title">Termék #2</h5>
+                        <img class="card-img-top" src="https://picsum.photos/300/200" alt="Termék #2">
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ex harum quibusdam tempora eaque exercitationem suscipit dignissimos, dolore, non, corporis soluta facilis nostrum alias? Hic cumque quasi non impedit iste.</p>
+                        <a href="#"><button class="specialButton">Vásárlás</button></a>
+                    </div>
+                    <div class="card-footer text-muted">Akció: 2021.11.08-ig (50%)</div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card text-center">
+                    <div class="card-header"><i class="fas fa-star"> Kiemelt</i></div>
+                    <div class="card-body">
+                        <h5 class="card-title">Termék #3</h5>
+                        <img class="card-img-top" src="https://picsum.photos/300/200" alt="Termék #3">
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ex harum quibusdam tempora eaque exercitationem suscipit dignissimos, dolore, non, corporis soluta facilis nostrum alias? Hic cumque quasi non impedit iste.</p>
+                        <a href="#"><button class="specialButton">Vásárlás</button></a>
+                    </div>
+                    <div class="card-footer text-muted">Akció: 2021.11.08-ig (35%)</div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-4 pb-3">
+            <div class="col-sm-6">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Termék #4</h5>
+                        <img class="card-img-top" src="https://picsum.photos/300/200" alt="Termék #4">
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ex harum quibusdam tempora eaque exercitationem suscipit dignissimos, dolore, non, corporis soluta facilis nostrum alias? Hic cumque quasi non impedit iste.</p>
+                        <a href="#"><button class="specialButton">Vásárlás</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Termék #5</h5>
+                        <img class="card-img-top" src="https://picsum.photos/300/200" alt="Termék #5">
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ex harum quibusdam tempora eaque exercitationem suscipit dignissimos, dolore, non, corporis soluta facilis nostrum alias? Hic cumque quasi non impedit iste.</p>
+                        <a href="#"><button class="specialButton">Vásárlás</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include('includes/end.ejs') %>

@@ -1,0 +1,12 @@
+.p-5 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("/img/space.jpg");
+    height: 600px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.divider {
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+}

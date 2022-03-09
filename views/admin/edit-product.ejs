@@ -1,0 +1,32 @@
+<%- include('../includes/head.ejs') %>
+<%- include('../includes/navigation.ejs') %>
+    <br>
+    <div class="bd-callout bd-callout-warning">
+        <div class="container pt-3 pb-3 bd-callout bd-callout-warning">
+            <form class="product-form" action="/admin/<%- editing?'szerkesztes':'uj-termek' %>" method="POST">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Megnevezés:</label>
+                    <input type="text" name="title" id="title" class="form-control" value="<%- editing?product.title:'' %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="imageUrl" class="form-label">Kép:</label>
+                    <input type="text" name="imageUrl" id="imageUrl" class="form-control" placeholder="https://picsum.photos/300/200" value="<%- editing?product.imageUrl:'' %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Ár:</label>
+                    <input type="number" name="price" id="price" step="0.01" class="form-control" value="<%- editing?product.price:'' %>" required>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Leírás:</label>
+                    <textarea name="description" id="description" cols="40" rows="10" maxlength="500" class="form-control" required><%- editing?product.description:'' %></textarea>
+                </div>
+        
+                <% if (editing) { %>
+                    <input type="hidden" name="productId" value="<%= product.id %>" required>
+                <% } %>
+        
+                <button type="submit" class="specialButton"><%- editing?'Szerkesztés':'Létrehozás' %></button>
+            </form>
+        </div>
+    </div>
+<%- include('../includes/end.ejs') %>

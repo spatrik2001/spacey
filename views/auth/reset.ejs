@@ -1,0 +1,21 @@
+<%- include('../includes/head.ejs') %>
+<%- include('../includes/navigation.ejs') %>
+
+<% if (errorMessage) { %>
+    <div class="text-center">
+        <%= errorMessage %>
+    </div>
+<% } %>
+<div class="login-form shadow">
+    <form action="/reset" method="POST">
+        <h4>Elfelejtette jelszavát?</h4>
+        <p>Adja meg az email címét:</p>
+        <div class="mb-3">
+            <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+        </div>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button class="specialButton btn-sm" type="submit">Email küldése</button>
+        <a href="/login"><button class="specialButton btn-sm">Vissza</button></a>
+    </form>
+</div>
+<%- include('../includes/end.ejs') %>
