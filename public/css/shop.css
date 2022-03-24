@@ -1,6 +1,5 @@
-.p-5 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("/img/space.jpg");
-    height: 600px;
+.kepsor {
+    height: 665px;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;

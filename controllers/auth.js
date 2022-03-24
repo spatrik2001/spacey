@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport(sendgridTransport({
 exports.getLogin = (req, res, next) => {
   res.render('auth/login', {
     path: '/login',
-    pageTitle: 'Bolt · Bejelentkezés',
+    pageTitle: 'SpaceY · Bejelentkezés',
     errorMessage: req.flash('error')
   });
 };
@@ -22,7 +22,7 @@ exports.getLogin = (req, res, next) => {
 exports.getSignup = (req, res, next) => {
   res.render('auth/signup', {
     path: '/signup',
-    pageTitle: 'Bolt · Regisztráció',
+    pageTitle: 'SpaceY · Regisztráció',
     errorMessage: req.flash('error')
   });
 };
@@ -98,7 +98,7 @@ exports.postLogout = (req, res, next) => {
 exports.getReset = (req, res, next) => {
   res.render('auth/reset', {
     path: '/reset',
-    pageTitle: 'Bolt · Elfelejtett jelszó',
+    pageTitle: 'SpaceY · Elfelejtett jelszó',
     errorMessage: req.flash('error')
   });
 };
@@ -144,7 +144,7 @@ exports.getNewPassword = (req, res, next) => {
       }
       res.render('auth/new-password', {
         path: '/new-password',
-        pageTitle: 'Bolt · Új jelszó igénylése',
+        pageTitle: 'SpaceY · Új jelszó igénylése',
         errorMessage: req.flash('error'),
         userId: user._id.toString(),
         passwordToken: token

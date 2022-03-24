@@ -6,7 +6,7 @@ exports.getProducts = (req, res, next) => {
     .then(products => {
       res.render('shop/product-list', {
         prods: products,
-        pageTitle: 'Bolt · Termékek',
+        pageTitle: 'SpaceY · Termékek',
         path: '/products'
       });
     })
@@ -29,7 +29,7 @@ exports.getShop = (req, res, next) => {
     .then(products => {
       res.render('home', {
         prods: products,
-        pageTitle: 'Bolt · Főoldal',
+        pageTitle: 'SpaceY · Főoldal',
         path: '/',
         errorMessage: req.flash('error')
       });
@@ -38,14 +38,14 @@ exports.getShop = (req, res, next) => {
 
 exports.getAbout = (req, res, next) => {
   res.render('about', {
-    pageTitle: 'Bolt · Rólunk',
+    pageTitle: 'SpaceY · Rólunk',
     path: '/about'
   });
 };
 
 exports.getContact = (req, res, next) => {
   res.render('contact', {
-    pageTitle: 'Bolt · Kapcsolat',
+    pageTitle: 'SpaceY · Kapcsolat',
     path: '/contact'
   });
 };
@@ -58,7 +58,7 @@ exports.getCart = (req, res, next) => {
       const products = user.cart.items;
       res.render('shop/cart', {
         path: '/cart',
-        pageTitle: 'Bolt · Kosár',
+        pageTitle: 'SpaceY · Kosár',
         products: products
       });
     })
@@ -114,7 +114,7 @@ exports.getOrders = (req, res, next) => {
     .then(orders => {
       res.render('shop/orders', {
         path: '/orders',
-        pageTitle: 'Bolt · Rendelések',
+        pageTitle: 'SpaceY · Rendelések',
         orders: orders
       });
     })

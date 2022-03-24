@@ -2,7 +2,7 @@ const Product = require('../models/product');
 
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/edit-product', {
-    pageTitle: 'Add Product',
+    pageTitle: 'SpaceY · Új termék felvétele',
     path: '/admin/add-product',
     editing: false
   });
@@ -23,8 +23,6 @@ exports.postAddProduct = (req, res, next) => {
   product
     .save()
     .then(result => {
-      // console.log(result);
-      console.log('Created Product');
       res.redirect('/admin/products');
     })
     .catch(err => {
@@ -44,7 +42,7 @@ exports.getEditProduct = (req, res, next) => {
         return res.redirect('/');
       }
       res.render('admin/edit-product', {
-        pageTitle: 'Edit Product',
+        pageTitle: 'SpaceY · Termék szerkesztés',
         path: '/admin/edit-product',
         editing: editMode,
         product: product
@@ -71,7 +69,6 @@ exports.postEditProduct = (req, res, next) => {
       product.imageUrl = updatedImageUrl;
       return product.save()
         .then(result => {
-          console.log('UPDATED PRODUCT!');
           res.redirect('/admin/products');
         })
     })
@@ -81,10 +78,9 @@ exports.postEditProduct = (req, res, next) => {
 exports.getProducts = (req, res, next) => {
   Product.find({userId: req.user._id})
     .then(products => {
-      console.log(products);
       res.render('admin/products', {
         prods: products,
-        pageTitle: 'Admin Products',
+        pageTitle: 'SpaceY · Admin termékek',
         path: '/admin/products'
       });
     })
@@ -95,7 +91,6 @@ exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
   Product.deleteOne({ _id: prodId, userId: req.user._id })
     .then(() => {
-      console.log('DESTROYED PRODUCT');
       res.redirect('/admin/products');
     })
     .catch(err => console.log(err));
