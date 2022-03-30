@@ -11,11 +11,11 @@
         <h4>Elfelejtette jelszavát?</h4>
         <p>Adja meg az email címét:</p>
         <div class="mb-3">
-            <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+            <input type="email" class="mezo" name="email" id="email" placeholder="Email">
         </div>
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <button class="specialButton btn-sm" type="submit">Email küldése</button>
-        <a href="/login"><button class="specialButton btn-sm">Vissza</button></a>
     </form>
+    <a href="/login"><button class="specialButton btn-sm">Vissza</button></a>
 </div>
 <%- include('../includes/end.ejs') %>

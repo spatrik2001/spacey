@@ -29,6 +29,17 @@ html {
     text-decoration: none;
 }
 
+.kepsor {
+    height: 680px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.divider {
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+}
+
 .specialButton {
     background-color: transparent;
     border: 2px solid lightgray;
