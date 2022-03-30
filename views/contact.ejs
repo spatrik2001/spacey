@@ -1,13 +1,44 @@
 <%- include('includes/head.ejs') %>
 <%- include('includes/navigation.ejs') %>
-    <div class="kepsor text-center bg-image">
-        <div class="container h-100">
-            <div class="d-flex justify-content-center align-items-center h-100">
-                <div class="col-lg-10 text-center text-white">
-                    <h1>Kapcsolat</h1>
-                    <hr class="divider my-4">
-                    <p class="font-weight-light mb-5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed nobis laboriosam, mollitia accusantium quam excepturi culpa quo quia officiis eum necessitatibus asperiores voluptatem minus ipsa expedita! Molestiae suscipit ad quis?</p>
-                    <button type="button" class="btn btn-primary btn-lg">Lorem Ipsum</button>
+    <div class="container contact h-100 shadow">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
+                        <div class="w-100 p-md-5 p-4">
+                            <h3 class="mb-4">Kapcsolat űrlap</h3>
+                            <form method="post" id="urlap" name="urlap" class="urlap" novalidate="novalidate">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <input type="text" class="mezo" name="name" id="name" placeholder="Név" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <input type="email" class="mezo" name="email" id="email" placeholder="Email" required>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input type="text" class="mezo" name="subject" id="subject" placeholder="Tárgy" required>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <textarea class="mezo" name="message" id="message" cols="30" rows="10" maxlength="500"
+                                        placeholder="Üzenet" required></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                        <input type="submit" class="specialButton btn-sm" value="Küldés">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-5 d-flex align-items-stretch contact-right">
+                        <div class="w-100 p-md-5 p-4">
+                            <h3 class="mb-4">Elérhetőségek</h3>
+                            <p><i class="fas fa-globe-europe contact-icon"></i>9021 Győr, Szent István út 7.</p>
+                            <p><i class="fas fa-phone contact-icon"></i>06 (1) 354 4090</p>
+                            <p><i class="fas fa-envelope contact-icon"></i>info@spacey.com</p>
+                            <div id="spaceyBasement" class="shadow"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

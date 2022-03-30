@@ -18,6 +18,32 @@
     outline-color: dodgerblue;
 }
 
+.contact {
+    margin-top: 8em;
+    border: 0px solid transparent;
+    border-radius: 0.4em;
+}
+
+.contact-right {
+    color: #f0f0f0;
+    background-color: dodgerblue;
+    font-size: 18px;
+}
+
+.contact-icon {
+    margin-right: 10px;
+    padding: 0.6em;
+    border: 1px solid #f0f0f0;
+    border-radius: 100%;
+    font-size: 20px;
+}
+
+#spaceyBasement {
+    height: 55%;
+    border: 1px solid #f0f0f0;
+    border-radius: 0.2em;
+}
+
 textarea {
     resize: none;
 }
