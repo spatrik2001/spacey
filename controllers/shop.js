@@ -26,6 +26,8 @@ exports.getProduct = (req, res, next) => {
 
 exports.getShop = (req, res, next) => {
   Product.find()
+    const prodArray = [prods]
+    .sort(function(a, b) {return b.createdAt - a.createdAt})
     .then(products => {
       res.render('home', {
         prods: products,

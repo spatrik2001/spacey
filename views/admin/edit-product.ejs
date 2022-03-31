@@ -3,7 +3,7 @@
     <br>
     <div class="bd-callout bd-callout-warning">
         <div class="container pt-3 pb-3 bd-callout bd-callout-warning">
-            <form class="product-form" action="/admin/<%- editing?'szerkesztes':'uj-termek' %>" method="POST">
+            <form class="product-form" action="/admin/<%- editing?'edit-product':'add-product' %>" method="POST">
                 <div class="mb-3">
                     <input type="text" name="title" id="title" class="mezo" placeholder="Megnevezés" value="<%- editing?product.title:'' %>" required>
                 </div>
@@ -21,7 +21,7 @@
                 <% if (editing) { %>
                     <input type="hidden" name="productId" value="<%= product.id %>" required>
                 <% } %>
-        
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <button type="submit" class="specialButton"><%- editing?'Szerkesztés':'Létrehozás' %></button>
             </form>
         </div>
