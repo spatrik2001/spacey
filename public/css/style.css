@@ -79,11 +79,7 @@ html {
     }
 }
 
-.card-footer {
-    text-align: center;
-}
-
-.user {
+.icon {
     font-size: 20px;
     transition: all 0.4s;
 }

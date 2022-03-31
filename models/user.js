@@ -25,10 +25,9 @@ const userSchema = new Schema({
       }
     ]
   },
-  role: {
-    type: String,
-    ref: 'User',
-    required: true
+  isAdmin: {
+    type: Boolean,
+    default: false
   }
 });
 

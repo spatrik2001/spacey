@@ -22,22 +22,24 @@
                 <% if (isAuthenticated) { %>
                 <li class="nav-item">
                     <a class="nav-link <%= path === '/cart' ? 'active': '' %>" href="/cart">
-                        <i class="fas fa-rocket user"></i>
+                        <i class="fas fa-rocket icon"></i>
                     </a> 
                 </li>
                 <% } %>
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" id="navbarSupportedContent" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-id-card-alt user"></i>
+                        <i class="fas fa-id-card-alt icon"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarSupportedContent">
                         <% if (isAuthenticated) { %>
                             <li class="nav-item">
                                 <a class="nav-link <%= path === '/orders' ? 'active' : '' %>" href="/orders">Rendelések</a> 
                             </li>
+                        <% } if (isAdministrator) { %>
                             <li class="nav-item">
                                 <a class="nav-link <%= path === '/admin/products' ? 'active' : '' %>" href="/admin/products">Admin</a>
                             </li>
+                        <% } if (isAuthenticated) { %>
                             <li class="nav-item">
                                 <form id="logout" action="/logout" method="POST">
                                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
