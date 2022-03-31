@@ -26,13 +26,14 @@ exports.getProduct = (req, res, next) => {
 
 exports.getShop = (req, res, next) => {
   Product.find()
-    const prodArray = [prods]
-    .sort(function(a, b) {return b.createdAt - a.createdAt})
+    .sort({createdAt: 'desc'})
     .then(products => {
       res.render('home', {
         prods: products,
+        product: products[0],
         pageTitle: 'SpaceY · Főoldal',
         path: '/',
+        
         errorMessage: req.flash('error')
       });
     })

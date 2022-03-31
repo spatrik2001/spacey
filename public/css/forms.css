@@ -19,7 +19,7 @@
 }
 
 .contact {
-    margin-top: 8em;
+    margin: 4em 0;
     border: 0px solid transparent;
     border-radius: 0.4em;
 }
@@ -39,11 +39,59 @@
 }
 
 #spaceyBasement {
-    height: 55%;
+    height: 250px;
     border: 1px solid #f0f0f0;
     border-radius: 0.1em;
 }
 
+.iframe-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 5%;
+}
+
+.iframe-container > * {
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    width: 100%;
+}
+
 textarea {
     resize: none;
+}
+
+@media screen and (max-width: 1024px) {
+    .contact {
+        margin: 3em 0;
+    }
+
+    .iframe-container {
+        padding-bottom: 1%;
+    }
+
+    .contact-right {
+        font-size: 17px;
+    }
+
+    .contact-icon {
+        font-size: 19px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .contact {
+        margin: 2em 0;
+    }
+
+    .contact-right {
+        font-size: 15px;
+    }
+
+    .contact-icon {
+        font-size: 18px;
+    }
 }

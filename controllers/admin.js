@@ -80,7 +80,7 @@ exports.getProducts = (req, res, next) => {
     .then(products => {
       res.render('admin/products', {
         prods: products,
-        pageTitle: 'SpaceY · Admin termékek',
+        pageTitle: 'SpaceY · Admin felület',
         path: '/admin/products'
       });
     })
