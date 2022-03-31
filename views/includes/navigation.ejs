@@ -35,11 +35,9 @@
                             <li class="nav-item">
                                 <a class="nav-link <%= path === '/orders' ? 'active' : '' %>" href="/orders">Rendelések</a> 
                             </li>
-                        <% } if (isAdministrator) { %>
                             <li class="nav-item">
                                 <a class="nav-link <%= path === '/admin/products' ? 'active' : '' %>" href="/admin/products">Admin</a>
                             </li>
-                        <% } if (isAuthenticated) { %>
                             <li class="nav-item">
                                 <form id="logout" action="/logout" method="POST">
                                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
