@@ -57,6 +57,7 @@ html {
 .gomb {
     color: grey;
     margin: 0.35em 0.15em;
+    text-decoration: none;
     background: transparent;
     border: none;
     transition: all 0.4s;
