@@ -1,4 +1,4 @@
-// favicon módosítása
+// Favicon módosítása
 const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches || false;
 const favicon = document.getElementById('favicon');
 
@@ -23,4 +23,10 @@ function basement() {
         position: jedlik,
         map: map
     });
+}
+
+// Modal ablak a termékekhez
+function modalFunction(product) {
+    $('#spaceyTermek .modal-body').html(product);
+    $('#spaceyTermek').modal("show");
 }

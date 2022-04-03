@@ -67,6 +67,11 @@ html {
     color: #333333;
 }
 
+.details {
+    text-decoration: none;
+    color: black;
+}
+
 @media screen and (max-width: 768px) {
     .specialButton {
         margin: 0.2em 0;

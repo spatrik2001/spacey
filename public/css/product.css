@@ -12,7 +12,6 @@
 }
 
 .product__title {
-    font-size: 1.2rem;
     text-align: center;
 }
 
@@ -23,4 +22,12 @@
 
 .product__description {
     text-align: center;
+}
+
+table {
+    margin-top: 3em;
+}
+
+td {
+    vertical-align: middle;
 }

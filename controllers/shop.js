@@ -33,7 +33,6 @@ exports.getShop = (req, res, next) => {
         product: products[0],
         pageTitle: 'SpaceY · Főoldal',
         path: '/',
-        
         errorMessage: req.flash('error')
       });
     })
