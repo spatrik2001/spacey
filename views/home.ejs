@@ -60,7 +60,7 @@
                                 <span class="fa fa-star"></span>
                                 <span class="fa fa-star"></span>
                                 <a href="/products/<%= product._id %>" class="details"><h5 class="card-title"><%= product.title %></h5></a>
-                                <h4 class="card-text"><%= product.price %> Ft</h4>
+                                <h4 class="card-text"><%- product.discount == true?(product.price-(product.price*(product.discountRate/100))).toLocaleString('en-US'):product.price.toLocaleString('en-US') %> Ft</h4>
                                 <a class="btn" data-bs-toggle="modal" data-bs-target="#spaceyTermek<%= product._id %>">Adatok</a>
                                 <% if (isAuthenticated) { %>
                                     <%- include('includes/add-to-cart.ejs', {product: product}) %>
@@ -80,12 +80,13 @@
                                                             <h3 class="card-title pb-3"><%= product.title %></h3>
                                                             <% if (product.discount == true) { %>
                                                                 <span class="text-decoration-line-through">Eredeti ár:</span>
-                                                                <p class="card-text labels text-decoration-line-through"><%= product.price %> Ft</p>
+                                                                <p class="card-text labels text-decoration-line-through"><%= product.price.toLocaleString('en-US') %> Ft</p>
+                                                                <br>
                                                                 <span>Akciós ár:</span>
-                                                                <h5 class="card-text">Olcsóbb ár Ft</h5>
+                                                                <h5 class="card-text labels"><%= (product.price-(product.price*(product.discountRate/100))).toLocaleString('en-US') %> Ft</h5>
                                                             <% } else { %>
                                                                 <span>Ár:</span>
-                                                                <h5 class="card-text labels"><%= product.price %> Ft</h5>
+                                                                <h5 class="card-text labels"><%= product.price.toLocaleString('en-US') %> Ft</h5>
                                                             <% } %>
                                                             <br>
                                                             <span>Leírás:</span>

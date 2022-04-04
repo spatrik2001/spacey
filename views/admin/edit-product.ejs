@@ -18,11 +18,13 @@
                     required><%- editing?product.description:'' %></textarea>
                 </div>
                 <div class="form-check mb-3">
-                    <input class="form-check-input" type="checkbox" id="discountCheck" value="" onclick="discountRateShow()">
+                    <input class="form-check-input" type="checkbox" name="discount" id="discount" value="<%- editing?product.discount:'false' %>" 
+                    onclick="discountRateShow()">
                     <p>Akció felvétele</p>
                 </div>
                 <div class="mb-3">
-                    <input type="hidden" name="discount" id="discount" class="mezo" placeholder="Akció értéke" value="<%- editing?product.discountRate:'' %>" required>
+                    <input type="hidden" name="discountRate" id="discountRate" 
+                    class="mezo" placeholder="Akció értéke" value="<%- editing?product.discountRate:'' %>" required>
                 </div>
         
                 <% if (editing) { %>

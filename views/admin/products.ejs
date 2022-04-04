@@ -19,21 +19,21 @@
                 <% for (let product of prods) { %>
                 <tr>
                     <td>
-                        <h4 class="product__title"><%= product.title %></h4>
+                        <h5 class="product__title"><%= product.title %></h5>
                     </td>
                     <td>
-                        <h5 class="product__price"><%= product.price %> Ft</h5>
+                        <p class="product__price fw-bold"><%= product.price.toLocaleString('en-US') %> Ft</p>
                     </td>
                     <% if (product.discount == true) { %>
                         <td>
-                            <p>Van (%)</p>
+                            <p><%= product.discountRate %>%</p>
                         </td>
                         <td>
-                            <p>Akciós ár</p>
+                            <p><%= (product.price-(product.price*(product.discountRate/100))).toLocaleString('en-US') %> Ft</p>
                         </td>
                     <% } else { %>
                         <td>
-                            <p>Nincs</p>
+                            <p>-</p>
                         </td>
                         <td>
                             <p>-</p>

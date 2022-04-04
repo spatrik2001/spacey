@@ -7,7 +7,7 @@ function switchIcon(darkMode) {
         favicon.href = '/img/favicon-light.png';
     else
         favicon.href = '/img/favicon-dark.png';
-}
+};
 
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener("change", (e) => switchIcon(e.matches));
 switchIcon(darkMode);
@@ -23,17 +23,18 @@ function basement() {
         position: jedlik,
         map: map
     });
-}
+};
 
 // Checkbox check az akció felvételéhez
 function discountRateShow() {
-    var checkBox = document.getElementById('discountCheck');
-    var input = document.getElementById('discount');
+    var input = document.getElementById('discountRate');
 
-    if (checkBox.checked == true)
+    if (document.getElementById('discount').checked) {
         input.type = "number";
-        document.getElementById('discountCheck').value = "checked";
-    if (checkBox.checked == false)
+        document.getElementById('discount').value = true;
+        document.getElementById('discount').setAttribute("checked", "");
+    } else {
         input.type = "hidden";
-        document.getElementById('discountCheck').value = "unchecked";
-}
+        document.getElementById('discount').value = false;
+    }
+};

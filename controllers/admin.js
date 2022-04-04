@@ -15,8 +15,10 @@ exports.postAddProduct = (req, res, next) => {
   const description = req.body.description;
   const discount = req.body.discount;
   const discountRate = req.body.discountRate;
+  if (req.body.discount.value == true) {
+    return req.body.discount.checked;
+  }
 
-  const checked = req.body.checked;
   const product = new Product({
     title: title,
     price: price,
@@ -63,6 +65,8 @@ exports.postEditProduct = (req, res, next) => {
   const updatedPrice = req.body.price;
   const updatedImageUrl = req.body.imageUrl;
   const updatedDesc = req.body.description;
+  const updatedDiscount = req.body.discount;
+  const updatedDiscountRate = req.body.discountRate;
 
   Product.findById(prodId)
     .then(product => {
@@ -73,6 +77,8 @@ exports.postEditProduct = (req, res, next) => {
       product.price = updatedPrice;
       product.description = updatedDesc;
       product.imageUrl = updatedImageUrl;
+      product.discount = updatedDiscount;
+      product.discountRate = updatedDiscountRate;
       return product.save()
         .then(result => {
           res.redirect('/admin/products');
