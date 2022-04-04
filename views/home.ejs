@@ -50,39 +50,50 @@
         <div class="row">
             <% prods.forEach(function(product, index) { %>
                 <% if (index < 4) { %>
-                <div class="col-sm-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <img class="card-img" src="<%= product.imageUrl %>" alt="<%= product.title %>">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <a href="/products/<%= product._id %>" class="details"><h5 class="card-title"><%= product.title %></h5></a>
-                            <h4 class="card-text"><%= product.price %> Ft</h4>
-                            <a class="btn" data-bs-toggle="modal" data-bs-target="#spaceyTermek">Adatok</a>
-                            <% if (isAuthenticated) { %>
-                                <%- include('includes/add-to-cart.ejs', {product: product}) %>
-                            <% } %>
-                            <% for (var i = 0; i < prods.length; i++) { %>
-                                <div class="modal fade" id="spaceyTermek" tabindex="-1" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="col-sm-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <img class="card-img" src="<%= product.imageUrl %>" alt="<%= product.title %>">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <a href="/products/<%= product._id %>" class="details"><h5 class="card-title"><%= product.title %></h5></a>
+                                <h4 class="card-text"><%= product.price %> Ft</h4>
+                                <a class="btn" data-bs-toggle="modal" data-bs-target="#spaceyTermek<%= product._id %>">Adatok</a>
+                                <% if (isAuthenticated) { %>
+                                    <%- include('includes/add-to-cart.ejs', {product: product}) %>
+                                <% } %>
+                                <div class="modal fade" id="spaceyTermek<%= product._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
                                         <div class="modal-content">
                                             <div class="modal-body">
                                                 <div class="container">
                                                     <div class="row">
                                                         <div class="col-12 col-lg-7">
-                                                            <img class="card-img-top" src="<%= prods[i].imageUrl %>" alt="<%= prods[i].title %>">
+                                                            <img class="card-img-top" src="<%= product.imageUrl %>" alt="<%= product.title %>">
+                                                            <p class="pt-2 fw-normal">A fent látható kép néhol csak illusztráció.</p>
                                                         </div>
                                                         <div class="col-12 col-lg-5">
-                                                            <h2 class="card-title"><%= prods[i].title %></h2>
-                                                            <button class="btn" data-bs-dismiss="modal"><i class="fas fa-times"></i></button>
-                                                            <h3 class="card-text"><%= prods[i].price %> Ft</h3>
-                                                            <p class="card-text"><%= prods[i].description %></p>
-                                                            <% if (isAuthenticated) { %>
-                                                                <%- include('includes/add-to-cart.ejs', {product: product}) %>
+                                                            <a class="btn btn-close float-end" data-bs-dismiss="modal"></a>
+                                                            <h3 class="card-title pb-3"><%= product.title %></h3>
+                                                            <% if (product.discount == true) { %>
+                                                                <span class="text-decoration-line-through">Eredeti ár:</span>
+                                                                <p class="card-text labels text-decoration-line-through"><%= product.price %> Ft</p>
+                                                                <span>Akciós ár:</span>
+                                                                <h5 class="card-text">Olcsóbb ár Ft</h5>
+                                                            <% } else { %>
+                                                                <span>Ár:</span>
+                                                                <h5 class="card-text labels"><%= product.price %> Ft</h5>
                                                             <% } %>
+                                                            <br>
+                                                            <span>Leírás:</span>
+                                                            <h5 class="card-text labels fw-light"><%= product.description %></h5>
+                                                                <% if (isAuthenticated) { %>
+                                                                    <%- include('includes/add-to-cart.ejs', {product: product}) %>
+                                                                <% } %>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -90,14 +101,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            <% } %>
                         </div>
                     </div>
-                </div>
-                <% } else { %>
-                    <input type="hidden" name="more">
-                <% } %>
-            <% }) %>
+                    <% } else { %>
+                        <input type="hidden" name="more">
+                    <% } %>
+                <% }) %>
+            </div>
         </div>
-    </div>
 <%- include('includes/end.ejs') %>

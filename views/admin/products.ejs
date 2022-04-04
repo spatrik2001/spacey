@@ -3,17 +3,19 @@
     <div class="container text-center pt-3">
         <h1>Felvett termékek</h1>
         <a href="/admin/add-product"><button type="submit" class="btn btn-primary btn-lg">Új termék</button></a>
+        <% if (prods.length > 0) { %>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">Megnevezés</th>
                     <th scope="col">Ár</th>
+                    <th scope="col">Akció</th>
+                    <th scope="col">Akciós ár</th>
                     <th scope="col">Leírás</th>
                     <th scope="col">Lehetőségek</th>
                 </tr>
             </thead>
             <tbody>
-            <% if (prods.length > 0) { %>
                 <% for (let product of prods) { %>
                 <tr>
                     <td>
@@ -22,12 +24,28 @@
                     <td>
                         <h5 class="product__price"><%= product.price %> Ft</h5>
                     </td>
+                    <% if (product.discount == true) { %>
+                        <td>
+                            <p>Van (%)</p>
+                        </td>
+                        <td>
+                            <p>Akciós ár</p>
+                        </td>
+                    <% } else { %>
+                        <td>
+                            <p>Nincs</p>
+                        </td>
+                        <td>
+                            <p>-</p>
+                        </td>
+                    <% } %>
                     <td>
                         <p class="product__description"><%= product.description %></p>
                     </td>
                     <td>
                         <a href="/admin/edit-product/<%= product.id %>?edit=true" class="gomb">Szerkesztés</a>
                         <form action="/admin/delete-product" method="POST">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                             <input type="hidden" name="productId" value="<%- product.id %>">
                             <button class="gomb" type="submit">Törlés</button>
                         </form>

@@ -35,9 +35,9 @@ html {
     background-attachment: fixed;
 }
 
-.divider {
-    border: 1px solid #e7e7e7;
-    border-radius: 5px;
+.labels {
+    display: inline-block;
+    text-indent: 1em;
 }
 
 .specialButton {

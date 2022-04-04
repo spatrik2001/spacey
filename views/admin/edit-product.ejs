@@ -17,6 +17,13 @@
                     <textarea name="description" id="description" cols="40" rows="10" maxlength="500" placeholder="Leírás" class="mezo"
                     required><%- editing?product.description:'' %></textarea>
                 </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="discountCheck" value="" onclick="discountRateShow()">
+                    <p>Akció felvétele</p>
+                </div>
+                <div class="mb-3">
+                    <input type="hidden" name="discount" id="discount" class="mezo" placeholder="Akció értéke" value="<%- editing?product.discountRate:'' %>" required>
+                </div>
         
                 <% if (editing) { %>
                     <input type="hidden" name="productId" value="<%= product.id %>" required>

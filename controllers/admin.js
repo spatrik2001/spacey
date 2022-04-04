@@ -13,11 +13,17 @@ exports.postAddProduct = (req, res, next) => {
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
   const description = req.body.description;
+  const discount = req.body.discount;
+  const discountRate = req.body.discountRate;
+
+  const checked = req.body.checked;
   const product = new Product({
     title: title,
     price: price,
     description: description,
     imageUrl: imageUrl,
+    discount: discount,
+    discountRate: discountRate,
     userId: req.user
   });
   product

@@ -25,8 +25,15 @@ function basement() {
     });
 }
 
-// Modal ablak a termékekhez
-function modalFunction(product) {
-    $('#spaceyTermek .modal-body').html(product);
-    $('#spaceyTermek').modal("show");
+// Checkbox check az akció felvételéhez
+function discountRateShow() {
+    var checkBox = document.getElementById('discountCheck');
+    var input = document.getElementById('discount');
+
+    if (checkBox.checked == true)
+        input.type = "number";
+        document.getElementById('discountCheck').value = "checked";
+    if (checkBox.checked == false)
+        input.type = "hidden";
+        document.getElementById('discountCheck').value = "unchecked";
 }
