@@ -3,31 +3,34 @@
 
 <% if (prods.length > 0) { %>
     <h3 class="py-4 text-center">Termékek (<%= prods.length %>)</h3>
-    <div class="grid pt-3">
-        <% for (let product of prods) { %>
-            <article class="card product-item text-center">
-                <header class="card__header">
-                    <h2 class="product__title">
-                        <%= product.title %>
-                    </h2>
-                </header>
-                <div class="card__image">
-                    <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+    <div class="container pt-3">
+        <div class="row">
+            <% for (let product of prods) { %>
+                <div class="col-sm-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="picture">
+                                <% if (product.discount == true) { %>
+                                    <span class="cheaper">-<%= product.discountRate %>%</span>
+                                <% } %>
+                                <img class="card-img" src="<%= product.imageUrl %>" alt="<%= product.title %>">
+                            </div>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <a href="/products/<%= product._id %>" class="details"><h5 class="card-title"><%= product.title %></h5></a>
+                            <h4 class="card-text"><%- product.discount == true?(product.price-(product.price*(product.discountRate/100))).toLocaleString('en-US'):product.price.toLocaleString('en-US') %> Ft</h4>
+                            <span class="d-inline btn" data-bs-toggle="modal" data-bs-target="#spaceyTermek<%= product._id %>">Adatok</span>
+                            <% if (isAuthenticated) { %>
+                                <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+                            <% } %>
+                            <%- include('../includes/modal.ejs', {product: product}) %>
+                        </div>
                 </div>
-                <div class="card__content">
-                    <h3 class="product__price"><%= product.price %> Ft</h3>
-                    <p class="product__description">
-                        <%= product.description %>
-                    </p>
-                </div>
-                <div class="card__actions">
-                    <a href="/products/<%= product._id %>" class="btn">Adatok</a>
-                    <% if (isAuthenticated) { %>
-                        <%- include('../includes/add-to-cart.ejs', {product: product}) %>
-                    <% } %>
-                </div>
-            </article>
-        <% } %>
+            <% } %>
+        </div>
     </div>
     <% } else { %>
         <div class="d-flex flex-column align-items-center align-middle pt-5">

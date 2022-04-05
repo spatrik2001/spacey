@@ -24,9 +24,9 @@
                             <br>
                             <span>Leírás:</span>
                             <h5 class="card-text labels fw-light"><%= product.description %></h5>
-                                <% if (isAuthenticated) { %>
-                                    <%- include('../includes/add-to-cart.ejs', {product: product}) %>
-                                <% } %>
+                            <% if (isAuthenticated) { %>
+                                <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+                            <% } %>
                             </div>
                         </div>
                     </div>

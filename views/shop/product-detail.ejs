@@ -4,8 +4,8 @@
     <body>
         <%- include('../includes/navigation.ejs') %>
         <div class="container">
-            <nav>
-                <ol class="breadcrumb">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb py-3">
                     <li class="breadcrumb-item">
                         <a href="/" class="gomb">Kezdőlap</a>
                     </li>
@@ -15,17 +15,60 @@
                     <li class="breadcrumb-item active" aria-current="page"><%= product.title %></li>
                 </ol>
             </nav>
-            <main class="centered">
-                <h1><%= product.title %></h1>
-                <hr>
-                <div class="image">
-                    <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="picture">
+                        <img class="img-fluid" src="<%= product.imageUrl %>" alt="<%= product.title %>">
+                    </div>
                 </div>
-                <h2><%= product.price %></h2>
-                <p><%= product.description %></p>
-                <% if (isAuthenticated) { %>
-                    <%- include('../includes/add-to-cart.ejs', {product: product}) %>
-                <% } %>
-            </main>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="card-title pb-2"><%= product.title %></h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="badge bg-primary">Űrutazás</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span>Leírás:</span>
+                            <p class="card-text labels fw-light"><%= product.description %></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="badge bg-success">69</span>
+                        </div>
+                        <div class="col-md-3">
+                            <span class="fw-light">Értékelés írása</span>
+                        </div>
+                    </div>
+                    <div class="row"></div>
+                    <div class="row"></div>
+                        <% if (product.discount == true) { %>
+                            <span class="text-decoration-line-through">Eredeti ár:</span>
+                            <p class="card-text labels text-decoration-line-through"><%= product.price.toLocaleString('en-US') %> Ft</p>
+                            <br>
+                            <span>Akciós ár:</span>
+                            <h5 class="card-text labels"><%= (product.price-(product.price*(product.discountRate/100))).toLocaleString('en-US') %> Ft</h5>
+                        <% } else { %>
+                            <span>Ár:</span>
+                            <h5 class="card-text labels"><%= product.price.toLocaleString('en-US') %> Ft</h5>
+                        <% } %>
+                        <br>
+                        <% if (isAuthenticated) { %>
+                            <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
         </div>
         <%- include('../includes/end.ejs') %>

@@ -27,7 +27,7 @@
                         <input type="hidden" name="discountRate" id="discountRate" 
                         class="mezo" placeholder="Akció értéke" value="<%- editing?product.discountRate:'' %>" required>
                     </div>
-                <% } if (editing && product.discount == true) { %>
+                <% } else if (editing && product.discount == true) { %>
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" name="discount" id="discount" value="<%- editing?product.discount:'false' %>" 
                         onclick="discountRateShow()" checked>
@@ -37,7 +37,7 @@
                         <input type="number" name="discountRate" id="discountRate" 
                         class="mezo" placeholder="Akció értéke" value="<%- editing?product.discountRate:'' %>" required>
                     </div>
-                <% } else { %>
+                <% } else if (!editing && product.discount == false) { %>
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" name="discount" id="discount" value="<%- editing?product.discount:'false' %>" 
                         onclick="discountRateShow()">
