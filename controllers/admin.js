@@ -15,10 +15,6 @@ exports.postAddProduct = (req, res, next) => {
   const description = req.body.description;
   const discount = req.body.discount;
   const discountRate = req.body.discountRate;
-  if (req.body.discount.value == true) {
-    return req.body.discount.checked;
-  }
-
   const product = new Product({
     title: title,
     price: price,

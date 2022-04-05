@@ -36,5 +36,6 @@ function discountRateShow() {
     } else {
         input.type = "hidden";
         document.getElementById('discount').value = false;
+        document.getElementById('discount').removeAttribute("checked", "");
     }
 };

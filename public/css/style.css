@@ -40,6 +40,24 @@ html {
     text-indent: 1em;
 }
 
+.picture {
+    position: relative;
+    display: inline-block;
+}
+
+.new {
+    position: absolute;
+    right: 205px;
+    top: 225px;
+    background:dodgerblue;
+    text-align: center;
+    border-radius: 0.2em;
+    color:white;
+    padding:1px 15px;
+    font-size:14px;
+    font-weight: bold;
+}
+
 .specialButton {
     background-color: transparent;
     border: 2px solid lightgray;
