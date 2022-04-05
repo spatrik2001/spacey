@@ -58,6 +58,10 @@ html {
     font-weight: bold;
 }
 
+.fa-star {
+    font-size: 11px;
+}
+
 .specialButton {
     background-color: transparent;
     border: 2px solid lightgray;
