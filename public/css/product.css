@@ -2,6 +2,10 @@
     font-size: 14px;
 }
 
+.card-title {
+    color: black;
+}
+
 .product-form {
     width: 20rem;
     max-width: 90%;
