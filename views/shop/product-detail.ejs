@@ -32,13 +32,7 @@
                             <span class="badge bg-primary">Űrutazás</span>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span>Leírás:</span>
-                            <p class="card-text labels fw-light"><%= product.description %></p>
-                        </div>
-                    </div>
-                    <div class="row">
+                    <div class="row pb-2">
                         <div class="col-md-3">
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
@@ -51,22 +45,63 @@
                             <span class="fw-light">Értékelés írása</span>
                         </div>
                     </div>
-                    <div class="row"></div>
-                    <div class="row"></div>
-                        <% if (product.discount == true) { %>
-                            <span class="text-decoration-line-through">Eredeti ár:</span>
-                            <p class="card-text labels text-decoration-line-through"><%= product.price.toLocaleString('en-US') %> Ft</p>
-                            <br>
-                            <span>Akciós ár:</span>
-                            <h5 class="card-text labels"><%= (product.price-(product.price*(product.discountRate/100))).toLocaleString('en-US') %> Ft</h5>
-                        <% } else { %>
-                            <span>Ár:</span>
-                            <h5 class="card-text labels"><%= product.price.toLocaleString('en-US') %> Ft</h5>
-                        <% } %>
-                        <br>
-                        <% if (isAuthenticated) { %>
-                            <%- include('../includes/add-to-cart.ejs', {product: product}) %>
-                        <% } %>
+                    <div class="row pb-3">
+                        <div class="col-md-12">
+                            <% if (product.discount == true) { %>
+                                <span class="text-decoration-line-through">Eredeti ár:</span>
+                                <p class="card-text labels text-decoration-line-through"><%= product.price.toLocaleString('en-US') %> Ft</p>
+                                <br>
+                                <span>Akciós ár:</span>
+                                <h5 class="card-text labels"><%= (product.price-(product.price*(product.discountRate/100))).toLocaleString('en-US') %> Ft</h5>
+                            <% } else { %>
+                                <span>Ár:</span>
+                                <h5 class="card-text labels"><%= product.price.toLocaleString('en-US') %> Ft</h5>
+                            <% } %>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row pb-3">
+                        <div class="col-md-5 d-flex d-inline-block">
+                            <span class="btn btn-secondary" id="less" onclick="quantityLess()">
+                                <i class="fas fa-minus" aria-hidden="true"></i>
+                            </span>
+                            <input type="number" class="form-control w-25 mx-1" name="quantity" id="quantity" value="1" min="1">
+                            <span class="btn btn-secondary" id="more" onclick="quantityMore()">
+                                <i class="fas fa-plus" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <div class="col-md-3">
+                            <% if (isAuthenticated) { %>
+                                <%- include('../includes/add-to-cart2.ejs', {product: product}) %>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <hr>
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#description">Leírás</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#reviews">Értékelések</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="description">
+                                    <p class="card-text labels"><%= product.description %></p>
+                                </div>
+                                <div role="tabpanel" class="tab-pane top-10" id="features">
+                                 ...
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="notes">
+                                 ...
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="reviews">
+                                 ...
+                                </div>
+                               </div>
+                        </div>
                     </div>
                 </div>
             </div>

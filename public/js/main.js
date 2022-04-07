@@ -27,7 +27,7 @@ function basement() {
 
 // Checkbox check az akció felvételéhez
 function discountRateShow() {
-    var input = document.getElementById('discountRate');
+    const input = document.getElementById('discountRate');
 
     if (document.getElementById('discount').checked) {
         input.type = "number";
@@ -38,4 +38,22 @@ function discountRateShow() {
         document.getElementById('discount').value = false;
         document.getElementById('discount').removeAttribute("checked", "");
     }
+};
+
+// Mennyiség befolyásoló gombok
+const quantity = document.getElementById('quantity');
+const less = document.getElementById('less');
+const more = document.getElementById('more');
+
+function quantityLess() {
+    if (less.click) {
+        document.getElementById('quantity').value = document.getElementById('quantity').value - 1;
+        if (document.getElementById('quantity').value < 1)
+            document.getElementById('quantity').value = 1;
+    }
+};
+
+function quantityMore() {
+    if (more.click)
+        document.getElementById('quantity').value = (+document.getElementById('quantity').value) + 1;
 };

@@ -71,10 +71,12 @@
                                 <h4 class="card-text <%- product.discount?'text-danger':'' %>">
                                     <%- product.discount?(product.price-(product.price*(product.discountRate/100))).toLocaleString():product.price.toLocaleString() %> Ft</h4>
                             </a>
-                            <span class="d-inline btn" data-bs-toggle="modal" data-bs-target="#spaceyTermek<%= product._id %>">Adatok</span>
-                            <% if (isAuthenticated) { %>
-                                <%- include('includes/add-to-cart.ejs', {product: product}) %>
-                            <% } %>
+                            <div class="d-grid gap-2 d-md-flex justify-content-center">
+                                <span class="btn" data-bs-toggle="modal" data-bs-target="#spaceyTermek<%= product._id %>">Adatok</span>
+                                <% if (isAuthenticated) { %>
+                                    <%- include('includes/add-to-cart.ejs', {product: product}) %>
+                                <% } %>
+                            </div>
                             <div class="modal fade" id="spaceyTermek<%= product._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
                                     <div class="modal-content">
@@ -102,7 +104,7 @@
                                                         <span>Leírás:</span>
                                                         <h5 class="card-text labels fw-light"><%= product.description %></h5>
                                                         <% if (isAuthenticated) { %>
-                                                            <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+                                                            <%- include('includes/add-to-cart.ejs', {product: product}) %>
                                                         <% } %>
                                                         </div>
                                                     </div>
