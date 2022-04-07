@@ -57,3 +57,9 @@ function quantityMore() {
     if (more.click)
         document.getElementById('quantity').value = (+document.getElementById('quantity').value) + 1;
 };
+
+// Tabok átváltása
+var tabTrigger = document.querySelector('#tab li:last-child button');
+var tab = new bootstrap.Tab(tabTrigger);
+
+tab.show();

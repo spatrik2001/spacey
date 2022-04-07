@@ -15,7 +15,7 @@
                     <li class="breadcrumb-item active" aria-current="page"><%= product.title %></li>
                 </ol>
             </nav>
-            <div class="row">
+            <div class="row pb-4">
                 <div class="col-md-6">
                     <div class="picture">
                         <img class="img-fluid" src="<%= product.imageUrl %>" alt="<%= product.title %>">
@@ -79,26 +79,22 @@
                     <div class="row">
                         <div class="col-md-12">
                             <hr>
-                            <ul class="nav nav-tabs">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#description">Leírás</a>
+                            <ul class="nav nav-tabs" id="sapceyTab" role="tablist">
+                                <li class="nav-item active" role="presentation">
+                                    <a class="nav-link active" href="#" aria-controls="description" role="tab"
+                                    data-toggle="tab" data-bs-target="#description">Leírás</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#reviews">Értékelések</a>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" href="#" aria-controls="reviews" role="tab"
+                                    data-toggle="tab" data-bs-target="#reviews">Értékelések</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="description">
                                     <p class="card-text labels"><%= product.description %></p>
                                 </div>
-                                <div role="tabpanel" class="tab-pane top-10" id="features">
-                                 ...
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="notes">
-                                 ...
-                                </div>
                                 <div role="tabpanel" class="tab-pane" id="reviews">
-                                 ...
+                                    <p class="card-text labels">asd</p>
                                 </div>
                                </div>
                         </div>

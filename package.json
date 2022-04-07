@@ -1,29 +1,37 @@
 {
-    "name": "spacey",
-    "version": "3.0.0",
-    "description": "Cool website with weird functions",
-    "main": "app.js",
-    "scripts": {
-        "start": "nodemon app.js"
-    },
-    "author": "Scheuer Patrik",
-    "license": "ISC",
-    "devDependencies": {
-        "nodemon": "^2.0.15"
-    },
-    "dependencies": {
-        "bcryptjs": "^2.4.3",
-        "bootstrap": "^5.1.3",
-        "connect-flash": "^0.1.1",
-        "connect-mongodb-session": "^3.1.1",
-        "crypto": "^1.0.1",
-        "csurf": "^1.11.0",
-        "ejs": "^2.6.1",
-        "express": "^4.16.3",
-        "express-session": "^1.15.6",
-        "mongodb": "^3.1.6",
-        "mongoose": "^5.2.17",
-        "nodemailer": "^6.7.2",
-        "nodemailer-sendgrid-transport": "^0.2.0"
-    }
+  "name": "spacey",
+  "version": "3.0.0",
+  "description": "Cool website with weird functions",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "Scheuer Patrik",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bootstrap": "^5.1.3",
+    "connect-flash": "^0.1.1",
+    "connect-mongodb-session": "^3.1.1",
+    "crypto": "^1.0.1",
+    "csurf": "^1.11.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "mongodb": "^3.1.6",
+    "mongoose": "^5.2.17",
+    "nodemailer": "^6.7.2",
+    "nodemailer-sendgrid-transport": "^0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spatrik2001/spacey.git"
+  },
+  "bugs": {
+    "url": "https://github.com/spatrik2001/spacey/issues"
+  },
+  "homepage": "https://github.com/spatrik2001/spacey#readme"
 }
