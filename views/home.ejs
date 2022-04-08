@@ -56,10 +56,12 @@
                         <div class="card-body">
                             <a href="/products/<%= product._id %>" class="details text-black">
                                 <div class="picture">
-                                    <span class="new">Új</span>
-                                    <% if (product.discount == true) { %>
-                                        <span class="cheaperHome">-<%= product.discountRate %>%</span>
-                                    <% } %>
+                                    <div class="d-grid gap-2 d-md-flex justify-content-start">
+                                        <span class="new">Új</span>
+                                        <% if (product.discount == true) { %>
+                                            <span class="cheaperHome">-<%= product.discountRate %>%</span>
+                                        <% } %>
+                                    </div>
                                     <img class="card-img" src="<%= product.imageUrl %>" alt="<%= product.title %>">
                                 </div>
                                 <span class="fa fa-star checked"></span>

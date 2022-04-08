@@ -47,8 +47,8 @@ html {
 
 .new {
     position: absolute;
-    right: 205px;
-    top: 225px;
+    /* right: 205px;
+    top: 225px; */
     background: dodgerblue;
     text-align: center;
     border-radius: 0.2em;
@@ -60,8 +60,8 @@ html {
 
 .cheaperHome {
     position: absolute;
-    right: 140px;
-    top: 225px;
+    /* right: 140px;
+    top: 225px; */
     background: red;
     text-align: center;
     border-radius: 0.2em;

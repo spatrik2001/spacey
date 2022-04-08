@@ -59,7 +59,11 @@ function quantityMore() {
 };
 
 // Tabok átváltása
-var tabTrigger = document.querySelector('#tab li:last-child button');
-var tab = new bootstrap.Tab(tabTrigger);
-
-tab.show();
+var tabList = [].slice.call(document.querySelectorAll('#spaceyTab a'));
+tabList.forEach(function(tab) {
+    var trigger = new bootstrap.Tab(tab);
+    tab.addEventListener('click', function(event) {
+        event.preventDefault();
+        trigger.show();
+    });
+});
