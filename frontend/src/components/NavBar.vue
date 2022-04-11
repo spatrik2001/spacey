@@ -1,0 +1,77 @@
+<template>
+  <nav class="navbar navbar-light navbar-expand-lg bg-faded justify-content-center shadow">
+    <div class="container">
+        <a href="/" class="navbar-brand">
+            <img class="d-inline-block align-text-top" src="/img/logo.png" alt="" width="85">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsingNavbar3">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+            <ul class="nav navbar-nav w-100">
+                <li @click="active = 'products'" class="nav-item" :class="{active:active === 'products'}">
+                    <a class="nav-link" href="/products">Termékek</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= path === '/about' ? 'active' : '' %>" href="/about">Rólunk</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= path === '/contact' ? 'active' : '' %>" href="/contact">Kapcsolat</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav ms-auto w-100 justify-content-end">
+                <!-- <% if (isAuthenticated) { %> -->
+                <li class="nav-item">
+                    <a class="nav-link <%= path === '/cart' ? 'active': '' %>" href="/cart">
+                        <i class="fas fa-rocket icon"></i>
+                    </a> 
+                </li>
+                <!-- <% } %> -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="navbarSupportedContent" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-id-card-alt icon"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarSupportedContent">
+                        <!-- <% if (isAuthenticated) { %> -->
+                            <li class="nav-item">
+                                <a class="nav-link <%= path === '/orders' ? 'active' : '' %>" href="/orders">Rendelések</a> 
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <%= path === '/admin/products' ? 'active' : '' %>" href="/admin/products">Admin</a>
+                            </li>
+                            <li class="nav-item">
+                                <form id="logout" action="/logout" method="POST">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <button class="gomb" type="submit">Kijelentkezés</button>
+                                </form>
+                            </li>
+                        <!-- <% } %>
+                        <% if (!isAuthenticated) { %> -->
+                            <li class="nav-item">
+                                <a class="nav-link <%= path === '/login' ? 'active' : '' %>" href="/login">Bejelentkezés</a> 
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <%= path === '/signup' ? 'active' : '' %>" href="/signup">Regisztráció</a>
+                            </li>
+                        <!-- <% } %>     -->
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</template>
+
+<script>
+export default {
+    name: 'NavBar',
+    data() {
+        return { active: null }
+    }
+
+}
+</script>
+
+<style>
+
+</style>
