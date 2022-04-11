@@ -1,0 +1,41 @@
+.breadcrumb {
+    font-size: 14px;
+}
+
+.card-title {
+    color: black;
+}
+
+.product-form {
+    width: 20rem;
+    max-width: 90%;
+    margin: auto;
+    display: block;
+}
+
+.product-item {
+    width: 20rem;
+    max-width: 95%;
+    margin: 1rem;
+}
+
+.product__title {
+    text-align: center;
+}
+
+.product__price {
+    text-align: center;
+    color: #4d4d4d;
+}
+
+.product__description {
+    text-align: center;
+}
+
+table {
+    margin-top: 3em;
+}
+
+td {
+    vertical-align: middle;
+}

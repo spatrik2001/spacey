@@ -1,0 +1,130 @@
+html {
+    font-family: 'Noto Sans', sans-serif;
+    color: black;
+}
+
+.navbar {
+    background-color: white;
+}
+
+.nav-item .current {
+    color: #fff;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: grey;
+    transition: all 0.4s;
+}
+
+.nav-link:hover {
+    color: #333333;
+}
+
+.navbar-text {
+    padding-right: 20em;
+}
+
+.navbar-text a {
+    text-decoration: none;
+}
+
+.kepsor {
+    height: 680px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.labels {
+    display: inline-block;
+    text-indent: 1em;
+}
+
+.picture {
+    position: relative;
+    display: inline-block;
+}
+
+.new {
+    position: absolute;
+    /* right: 205px;
+    top: 225px; */
+    background: dodgerblue;
+    text-align: center;
+    border-radius: 0.2em;
+    color: white;
+    padding: 1px 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.cheaperHome {
+    position: absolute;
+    /* right: 140px;
+    top: 225px; */
+    background: red;
+    text-align: center;
+    border-radius: 0.2em;
+    color: white;
+    padding: 1px 13px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.fa-star {
+    font-size: 11px;
+}
+
+.specialButton {
+    background-color: transparent;
+    border: 2px solid lightgray;
+    display: inline-block;
+    padding: 0.4em 0.4em;
+    margin: 0 0.7em 0 0.7em;
+    border-radius: 0.3em;
+    transition: all 0.4s;
+}
+
+.specialButton:hover {
+    border: 2px solid dodgerblue;
+}
+
+.gomb {
+    color: grey;
+    margin: 0.35em 0.15em;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    transition: all 0.4s;
+}
+
+.gomb:hover {
+    color: #333333;
+}
+
+.details {
+    text-decoration: none;
+    color: black;
+}
+
+@media screen and (max-width: 768px) {
+    .specialButton {
+        margin: 0.2em 0;
+    }
+
+    .gomb {
+        color: grey;
+        margin: 0.4em -0.35em !important;
+        background: transparent;
+        border: none;
+    }
+}
+
+.icon {
+    font-size: 20px;
+    transition: all 0.4s;
+}
+
+footer {
+    background-color: #333333;
+}
