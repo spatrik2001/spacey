@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from "./home/home.component";
-import { ErrorComponent } from "./error/error.component";
-import { ProductComponent } from './product/product.component';
-import { AboutComponent } from './about/about.component';
-import { ContactComponent } from './contact/contact.component';
+import { HomeComponent } from "./components/home/home.component";
+import { ErrorComponent } from "./components/error/error.component";
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 const routes: Routes = [
   {
@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: "products",
-    component: ProductComponent
+    component: ProductListComponent
   },
   {
     path: "about",

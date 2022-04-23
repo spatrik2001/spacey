@@ -1,18 +1,36 @@
 {
-  "name": "backend",
-  "version": "0.0.0",
-  "private": true,
+  "name": "spacey-backend",
+  "version": "1.0.0",
+  "description": "Cool features with weird implementations",
+  "main": "app.js",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "nodemon app.js"
   },
-  "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "mongoose": "^6.2.10",
-    "morgan": "~1.9.1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spatrik2001/spacey.git"
   },
+  "author": "Ábrahám Domonkos, Scheuer Patrik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spatrik2001/spacey/issues"
+  },
+  "homepage": "https://github.com/spatrik2001/spacey#readme",
   "devDependencies": {
     "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "connect-mongodb-session": "^3.1.1",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "csurf": "^1.11.0",
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "mongodb": "^4.5.0",
+    "mongoose": "^6.3.1",
+    "nodemailer": "^6.7.3",
+    "nodemailer-sendgrid-transport": "^0.2.0"
   }
 }
