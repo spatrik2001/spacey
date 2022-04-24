@@ -23,7 +23,10 @@ const store = new MongoDBStore({
 });
 const csrfProtection = csrf();
 
-const shopRoutes = require('./app/routes/shop');
+const productApiRoutes = require('./app/routes/product');
+const userApiRoutes = require('./app/routes/user');
+const orderApiRoutes = require('./app/routes/order');
+const authApiRoutes = require('./app/routes/auth');
 
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -52,13 +55,15 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-    res.locals.isAdministrator = req.session.isAdmin;
     res.locals.isAuthenticated = req.session.isLoggedIn;
     res.locals.csrfToken = req.csrfToken();
     next();
 });
 
-app.use(shopRoutes);
+app.use('/api/products', productApiRoutes);
+app.use('/api/users', userApiRoutes);
+app.use('/api/orders', orderApiRoutes);
+app.use('/api/auth', authApiRoutes);
 
 mongoose
     .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })

@@ -1,6 +1,6 @@
 export class Product {
     _id?: any;
-    title?: string;
+    title?: String;
     price?: number;
     description?: string;
     imageUrl?: any;
