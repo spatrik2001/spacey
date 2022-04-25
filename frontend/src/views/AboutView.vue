@@ -18,7 +18,6 @@
 <script>
 export default {
   name: 'AboutView',
-  components: {},
   created() {
     document.title = 'SpaceY · Rólunk';
   }

@@ -1,7 +1,7 @@
 <template>
     <div class="contact">
         <div class="container contact shadow">
-            <div class="row mx-auto justify-content-center">
+            <div class="row d-flex justify-content-center align-items-center">
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
@@ -52,8 +52,6 @@
 
 export default {
     name: 'ContactView',
-    components: {
-    },
     created() {
         document.title = 'SpaceY · Kapcsolat';
     }

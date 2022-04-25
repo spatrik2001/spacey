@@ -8,7 +8,7 @@ const csrf = require('csurf');
 const flash = require('connect-flash');
 
 const corsOptions = {
-    origin: "http://localhost:4200"
+    origin: "http://localhost:8080"
 };
 const User = require('./app/models/user');
 
