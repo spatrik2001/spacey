@@ -11,11 +11,15 @@ Egy érdekes és szemkápráztató webáruház, ami Vue.js-ben készült. Ehhez 
     * A felhasználó jelszava titkosításra kerül a fiók létrehozása során.
 
 ## Felhasznált eszközök
-A felhasználáshoz a következők kerültek felhasználásra: Vue.js, Node.js
+A felhasználáshoz a következők kerültek felhasználásra: Vue.js, Node.js, MongoDB, Bootstrap, Express
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Telepítés
+1. VueCLI [telepítése](https://cli.vuejs.org/guide/installation.html)
+2. NodeJS [telepítése](https://nodejs.org/en/download/)
+3. Csomagkezelő használata (NPM/Yarn)
+4. Git clone esetén érdemes a frontend és a backend mappában lefuttatni az `npm install` vagy a `yarn install` parancsot.
+5. A MongoDB adatbázis beállítása a `backend/app.js` elérési úton.
+### Példa
 
 ## Running unit tests
 

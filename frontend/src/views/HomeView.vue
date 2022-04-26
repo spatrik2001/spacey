@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import NewProducts from '../components/NewProducts.vue'
+import NewProducts from '../components/NewProducts.vue';
 
 export default {
   name: 'HomeView',

@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-Axios.defaults.baseURL = 'http://localhost:3000/';
+Axios.defaults.baseURL = 'http://localhost:3000'
 
 export default{
     getAllProducts() {
@@ -23,12 +23,9 @@ export default{
     },
     getNewProducts() {
         return Axios.get('/api/products')
-            .sort({ createdAt: 'desc'})
             .then(response => {
                 return response.data;
             })
-            .catch(err => {
-                console.log(err);
-            })
+            .catch()
     }
 }
