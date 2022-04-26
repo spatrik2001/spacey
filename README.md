@@ -1,15 +1,17 @@
-# Vizsgaremek
-Monumental webstore inspired by an old company from my previous school.
+# Szakdolgozat
+Egy érdekes és szemkápráztató webáruház, ami Vue.js-ben készült. Ehhez a projekthez a [Vue CLI](https://github.com/vuejs/vue-cli) 3.x verziója került felhasználásra.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.2.
+## Tulajdonságok
+1. A felhasználó képes fiókot létrehozni, abba bejelentkezni, illetve új jelszót kérni email cím segítségével.
+2. CRUD műveletek
+    * A felhasználó hozzá tud adni termékeket és azokat törölni.
+    * Az adminisztrátor hozzá tud adni termékeket a kínálathoz.
+    * Az adminisztrátor törölheti vagy szerkesztheti a hozzáadott termékeket.
+3. Biztonság
+    * A felhasználó jelszava titkosításra kerül a fiók létrehozása során.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Felhasznált eszközök
+A felhasználáshoz a következők kerültek felhasználásra: Vue.js, Node.js
 
 ## Build
 
