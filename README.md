@@ -19,7 +19,11 @@ A felhasználáshoz a következők kerültek felhasználásra: Vue.js, Node.js, 
 3. Csomagkezelő használata (NPM/Yarn)
 4. Git clone esetén érdemes a frontend és a backend mappában lefuttatni az `npm install` vagy a `yarn install` parancsot.
 5. A MongoDB adatbázis beállítása a `backend/app.js` elérési úton.
-### Példa
+### Példa:
+```
+    const MONGODB_URI = 'mongodb://127.0.0.1:27017/spacey';
+```
+6. A szerverek elindítása: `npm start`(backend) és `npm run serve`(frontend)
 
 ## Running unit tests
 
