@@ -4,9 +4,9 @@ const favicon = document.getElementById('favicon');
 
 function switchIcon(darkMode) {
     if (darkMode)
-        favicon.href = '/img/favicon-light.png';
+        favicon.href = '../public/favicon-light.png';
     else
-        favicon.href = '/img/favicon-dark.png';
+        favicon.href = '@/assets/img/favicon-dark.png';
 };
 
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener("change", (e) => switchIcon(e.matches));

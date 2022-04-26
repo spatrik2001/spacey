@@ -41,15 +41,16 @@
       </div>
     </div>
     <h2 class="text-center py-4">Új termékeink</h2>
+    <new-products/>
   </div>
 </template>
 
 <script>
+import NewProducts from '../components/NewProducts.vue'
 
 export default {
   name: 'HomeView',
-  components: {
-  },
+  components: { NewProducts },
   created() {
     document.title = 'SpaceY · Főoldal';
   }

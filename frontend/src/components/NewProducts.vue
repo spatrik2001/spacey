@@ -3,7 +3,7 @@
       <div class="row">
           <!-- <% prods.forEach(function(product, index) { %>
               <% if (index < 4) { %> -->
-                  <div class="col-sm-3">
+                  <div class="col-sm-3" v-for="(product, i) in products" :key="i">
                       <div class="card">
                           <div class="card-body">
                               <a href="/products/{{ product._id }}" class="details text-black">
@@ -14,7 +14,7 @@
                                               <span class="cheaperHome">-{{ product.discountRate }}%</span>
                                           <!-- <% } %> -->
                                       </div>
-                                      <img class="card-img" src="{{ product.imageUrl }}" alt="{{ product.title }}">
+                                      <img class="card-img" :src="product.imageUrl" :alt="product.title">
                                   </div>
                                   <span class="fa fa-star checked"></span>
                                   <span class="fa fa-star checked"></span>
@@ -80,8 +80,19 @@
 </template>
 
 <script>
+import productservice from '../services/productservice';
 export default {
-
+    data() {
+        return {
+            products: []
+        }
+    },
+    mounted() {
+        productservice.getNewProducts()
+            .then(response => {
+            this.products = response;
+        })
+    }
 }
 </script>
 

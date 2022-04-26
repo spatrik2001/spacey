@@ -26,6 +26,7 @@
                                 </a>
                                 <div class="d-grid gap-2 d-md-flex justify-content-center">
                                     <span class="btn" data-bs-toggle="modal" data-bs-target="#spaceyTermek{{ product._id }}">Adatok</span>
+                                    <modal-component/>
                                     <!-- <% if (isAuthenticated) { %>
                                         <%- include('../includes/add-to-cart.ejs', {product: product}) 
                                     <% } %> -->
@@ -80,8 +81,20 @@
 </template>
 
 <script>
+// import productservice from './services/productservice';
+import ModalComponent from '@/components/ModalComponent.vue';
 export default {
     name: 'ProductList',
+    data() {
+        return {
+            products: [],
+            totalProducts: 0
+        }
+    },
+    components: { ModalComponent },
+    mounted() {
+        
+    },
     created() {
         document.title = 'SpaceY · Termékek';
     }
