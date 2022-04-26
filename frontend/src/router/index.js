@@ -4,6 +4,7 @@ import AboutView from '../views/AboutView.vue';
 import ContactView from '../views/ContactView.vue';
 import ErrorView from '../views/ErrorView.vue';
 import ProductList from '../views/shop/ProductList.vue';
+import ProductDetail from '../views/shop/ProductDetail.vue';
 import CartView from '../views/shop/CartView.vue';
 import OrderView from '../views/shop/OrderView.vue';
 import SignupView from '../views/auth/SignupView.vue';
@@ -36,6 +37,12 @@ const routes = [
     path: '/products',
     name: 'product-list',
     component: ProductList
+  },
+  {
+    path: '/products/:productId',
+    name: 'product-detail',
+    component: ProductDetail,
+    props: true
   },
   {
     path: '/cart',

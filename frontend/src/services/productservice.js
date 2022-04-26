@@ -12,8 +12,8 @@ export default{
                 console.log(err);
             })
     },
-    getProducts() {
-        return Axios.get('/api/products')
+    getProductById(id) {
+        return Axios.get(`/api/products/${id}`)
             .then(response => {
                 return response.data;
             })

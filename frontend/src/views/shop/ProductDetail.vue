@@ -9,19 +9,19 @@
                     <li class="breadcrumb-item">
                         <a href="/products" class="gomb">Termékek</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ egyProduct.title }}</li>
                 </ol>
             </nav>
             <div class="row pb-4">
                 <div class="col-md-6">
                     <div class="picture">
-                        <img class="img-fluid" src="{{ product.imageUrl }}" alt="{{ product.title }}">
+                        <img class="img-fluid" :src="egyProduct.imageUrl" :alt="egyProduct.title">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-12">
-                            <h3 class="card-title pb-2">{{ product.title }}</h3>
+                            <h3 class="card-title pb-2">{{ egyProduct.title }}</h3>
                         </div>
                     </div>
                     <div class="row">
@@ -35,7 +35,7 @@
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star checked"></span>
                             <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star pr-2"></span>
                             <span class="badge bg-success">69</span>
                         </div>
                         <div class="col-md-3">
@@ -44,16 +44,17 @@
                     </div>
                     <div class="row pb-3">
                         <div class="col-md-12">
-                            <!-- <% if (product.discount == true) { %> -->
+                            <div v-if="egyProduct.discount">
                                 <span class="text-decoration-line-through">Eredeti ár:</span>
-                                <p class="card-text labels text-decoration-line-through">{{ product.price.toLocaleString('en-US') }} Ft</p>
+                                <p class="card-text labels text-decoration-line-through">{{ egyProduct.price }} Ft</p>
                                 <br>
                                 <span>Akciós ár:</span>
-                                <h5 class="card-text labels">{{ (product.price-(product.price*(product.discountRate/100))).toLocaleString('en-US') }} Ft</h5>
-                            <!-- <% } else { %> -->
+                                <h5 class="card-text labels">{{ (egyProduct.price-(egyProduct.price*(egyProduct.discountRate/100))) }} Ft</h5>
+                            </div>
+                            <div v-else>
                                 <span>Ár:</span>
-                                <h5 class="card-text labels">{{ product.price.toLocaleString('en-US') }} Ft</h5>
-                            <!-- <% } %> -->
+                                <h5 class="card-text labels">{{ egyProduct.price }} Ft</h5>
+                            </div>
                             <hr>
                         </div>
                     </div>
@@ -85,7 +86,7 @@
                                 </div>
                                 <div class="tab-content pt-3">
                                     <div role="tabpanel" class="tab-pane fade show active" id="description">
-                                        <p class="card-text labels">{{ product.description }}</p>
+                                        <p class="card-text labels">{{ egyProduct.description }}</p>
                                     </div>
                                     <div role="tabpanel" class="tab-pane fade" id="reviews">
                                         <p class="card-text labels">asd</p>
@@ -101,10 +102,21 @@
 </template>
 
 <script>
-    export default {
-        name: 'ProductDetail',
-        created() {
-            document.title = 'SpaceY · Termék';
+import ProductService from '@/services/productservice';
+export default {
+    name: 'productDetail',
+    data() {
+        return {
+            egyProduct: []
         }
+    },
+    created() {
+        ProductService.getProductById(this.$route.params.productId)
+            .then(response => {
+                this.egyProduct = response;
+                document.title = `SpaceY · ${this.egyProduct.title}`;
+            })
     }
+}
+
 </script>
