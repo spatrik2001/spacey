@@ -4,7 +4,7 @@
             <div class="text-center"><%= errorMessage %></div>
         <% } %> -->
         <div class="login-form shadow">
-            <form action="/login" @submit.prevent="login" method="POST">
+            <form action="/login" v-on:submit="login" method="POST">
                 <img src="@/assets/img/logo.png" class="img-fluid">
                 <h4>Jelentkezzen be webáruházunkba!</h4>
                 <div class="mb-3 mt-5">
@@ -39,18 +39,17 @@ export default {
         }
     },
     methods: {
-        login(event) {
-            const user = {
+        login() {
+            const data = {
                 email: this.email,
                 password: this.password
             };
 
-            AuthService.postLogin(user)
-                .then((user) => {
-                    console.log(user);
+            AuthService.postLogin(data)
+                .then((response) => {
+                    console.log(response);
                     this.isLoggedIn = true;
-                    event.target.reset();
-                    this.$router.push(this.$route.query.from || "/");
+                    // router.push("/");
                 })
                 .catch(err => {
                     console.log(err);

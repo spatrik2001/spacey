@@ -12,9 +12,9 @@ const corsOptions = {
 };
 const User = require('./app/models/user');
 
-const MONGODB_URI =
-    'mongodb+srv://scheuer_patrik:asdasd123@cluster0.icldh.mongodb.net/spacey?authSource=admin&replicaSet=atlas-22dxd0-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true';
-// const MONGODB_URI = 'mongodb://127.0.0.1:27017/spacey';
+// const MONGODB_URI =
+//     'mongodb+srv://scheuer_patrik:asdasd123@cluster0.icldh.mongodb.net/spacey?authSource=admin&replicaSet=atlas-22dxd0-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true';
+const MONGODB_URI = 'mongodb://127.0.0.1:27017/spacey';
 
 const app = express();
 const store = new MongoDBStore({

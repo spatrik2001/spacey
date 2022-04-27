@@ -1,6 +1,7 @@
 <template>
     <div class="cart">
         <!-- <% if (products.length > 0) { %> -->
+        <div v-if="products.length > 0">
             <ul class="cart__item-list">
                 <!-- <% products.forEach(p => { %> -->
                     <li class="cart__item">
@@ -20,19 +21,25 @@
                     <button class="specialButton" type="submit">Megrendelés</button>
                 </form>
             </div>
-        <!-- <% } else { %> -->
+        </div>
+        <div v-else>
             <div class="d-flex flex-column align-items-center align-middle pt-5">
                 <h3 class="py-4">Üres a kosara!</h3>
                 <a href="/products"><button class="specialButton btn-sm mx-auto">Vásárlás folytatása</button></a>
-                <img class="img-fluid center" src="/img/empty_cart_logo.png" alt="Bevásárlókocsi">
+                <img class="img-fluid center" src="@/assets/img/empty_cart_logo.png" alt="Bevásárlókocsi">
             </div>
-        <!-- <% } %> -->
+        </div>
     </div>
 </template>
 
 <script>
 export default {
     name: 'CartView',
+    data() {
+        return {
+            products: []
+        }
+    },
     created() {
         document.title = 'SpaceY · Kosár';
     }
