@@ -3,16 +3,21 @@ import Axios from 'axios';
 Axios.defaults.baseURL = 'http://localhost:3000';
 
 export default {
-    postLogin() {
-        // const email = req.body.email;
-        // const password = req.body.password;
-        return Axios.post('/api/auth/login')
-            .then(response => {
-                return response.data;
+    postLogin(user) {
+        return Axios.post('/api/auth/login', user)
+            .then(res => {
+                if (res.status === 200) {
+                    localStorage.setItem('token', res.data.token);
+                    this.$router.push('/');
+                }
+                // return response.data;
             })
             .catch(err => {
                 console.log(err);
             })
+    },
+    postSignup(user) {
+        return Axios.post('/api/auth/signup', user)
     }
 }
 

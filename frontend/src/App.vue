@@ -41,10 +41,7 @@
                     <a href="/admin/products" class="nav-link <%= path === '/admin/products' ? 'active' : '' %>">Admin</a>
                   </li>
                   <li class="nav-item">
-                    <form id="logout" action="/logout" method="POST">
-                      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                      <button class="gomb" type="submit">Kijelentkezés</button>
-                    </form>
+                      <button class="gomb" @click="logout">Kijelentkezés</button>
                   </li>
                 <!-- <% } %>
                 <% if (!isAuthenticated) { %> -->
@@ -83,6 +80,12 @@ import FooterComponent from './components/FooterComponent.vue';
 export default {
   components: {
     FooterComponent
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem('token');
+      this.$router.push('/');
+    }
   }
 }
 </script>
