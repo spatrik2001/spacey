@@ -101,12 +101,16 @@ export default {
                     this.products = response;
                 })
                 .catch();
-        },
-        ProductDetail(id) {
-            console.log(id);
-            this.$router.push(`/products/${id}`);
         }
-    }
+    },
+    // computed: {
+    //     sortProducts: function() {
+    //         this.products.sort((a, b) => {
+    //             return new Date(b.createdAt) - new Date(a.createdAt);
+    //         });
+    //         return this.products;
+    //     }
+    // }
 }
 </script>
 
