@@ -26,13 +26,13 @@
     "connect-mongodb-session": "^3.1.1",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
-    "csurf": "^1.11.0",
     "express": "^4.17.3",
     "express-session": "^1.17.2",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.5.0",
     "mongoose": "^6.3.1",
     "nodemailer": "^6.7.3",
-    "nodemailer-sendgrid-transport": "^0.2.0"
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "uuid": "^8.3.2"
   }
 }

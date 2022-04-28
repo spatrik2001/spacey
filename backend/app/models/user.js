@@ -26,9 +26,9 @@ const userSchema = new Schema({
       }
     ]
   },
-  isAdmin: {
-    type: Boolean,
-    default: false
+  roles: {
+    type: Schema.Types.ObjectId,
+    ref: 'Role'
   }
 });
 

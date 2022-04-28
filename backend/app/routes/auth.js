@@ -5,8 +5,10 @@ const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
+const app = require('../../app');
 
 const User = require('../models/user');
+const RefreshToken = require('../models/refreshtoken');
 
 const transporter = nodemailer.createTransport(sendgridTransport({
     auth: {
@@ -19,7 +21,8 @@ router.post('/login', function(req, res, next) {
     const password = req.body.password;
     User
     .findOne({ email: email })
-    .then(user => {
+    .populate('roles', '-__v')
+    .then(async (user) => {
         if(!user) {
             return res.status(401).json({
                 title: 'hiba',
@@ -32,10 +35,17 @@ router.post('/login', function(req, res, next) {
                 error: 'Helytelen email vagy jelszó!'
             });
         }
-        var token = jwt.sign({ userId: user._id}, 'secretkey', {expiresIn: 1209600});
+        const token = jwt.sign({ userId: user._id}, app.config, {expiresIn: app.jwtExpiration});
+        const refreshToken = await RefreshToken.createToken(user);
+        const authorities = [];
+        for (let i = 0; i < user.roles.length; i++) {
+            authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
+        }
         req.session.isLoggedIn = true;
         req.session.user = user;
         return req.session.save(err => {
+            const newAccessToken = jwt.sign({id: refreshToken.user._id}, app.config,
+                {expiresIn: app.jwtExpiration});
             res.status(200).json({
                 title: 'üzenet',
                 token: token
