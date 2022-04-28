@@ -100,10 +100,25 @@ router.post('/signup', function(req, res, next) {
     .catch(err => console.log(err));
 });
 
-router.post('/logout', function(req, res, next) {
-    req.session.destroy(err => {
-        res.redirect('/');
-    });
-})
+router.post('/logout', async function(req, res, next) {
+    const { refreshToken: requestToken } = req.body
+    try {
+        let refreshToken = await RefreshToken.findOne({ token: requestToken});
+        if (!refreshToken) {
+            res.status(403).json({ message: 'A refresh token nincs az adatbázisban!'});
+            return;
+        }
+        if (RefreshToken.verifyExpiration(refreshToken)) {
+            RefreshToken.findByIdAndRemove(refreshToken._id, 
+                { useFindAndModify: false }).exec();
+            res.status(403).json({
+                message: "A munkamenet lejárt. Jelentkezzen be újra!"
+            });
+            return;
+        }
+    } catch (error) {
+        return res.status(500).send({ message: error });
+    }
+});
 
 module.exports = router;
