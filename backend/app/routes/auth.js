@@ -35,7 +35,7 @@ router.post('/login', function(req, res, next) {
                 error: 'Helytelen email vagy jelszó!'
             });
         }
-        const token = jwt.sign({ userId: user._id}, app.config, {expiresIn: app.jwtExpiration});
+        const token = jwt.sign({ userId: user._id}, 'secretkey', {expiresIn: Date.now() + 3600});
         const refreshToken = await RefreshToken.createToken(user);
         const authorities = [];
         for (let i = 0; i < user.roles.length; i++) {
@@ -44,8 +44,8 @@ router.post('/login', function(req, res, next) {
         req.session.isLoggedIn = true;
         req.session.user = user;
         return req.session.save(err => {
-            const newAccessToken = jwt.sign({id: refreshToken.user._id}, app.config,
-                {expiresIn: app.jwtExpiration});
+            const newAccessToken = jwt.sign({id: refreshToken.user._id}, 'secretkey',
+                {expiresIn: Date.now() + 3600});
             res.status(200).json({
                 title: 'üzenet',
                 token: token

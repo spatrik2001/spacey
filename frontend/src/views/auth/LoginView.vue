@@ -41,7 +41,7 @@ export default {
                 password: this.password
             };
 
-            axios.post('http://localhost:3000/api/auth/login', user)
+            axios.post('http://localhost:3000/api/auth/login', user, { headers: authHeader() })
                 .then(res => {
                     if (res.status === 200) {
                         localStorage.setItem('token', res.data.token);

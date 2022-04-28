@@ -1,24 +1,26 @@
-import Axios from 'axios';
+import api from './api';
+import TokenService from './tokenservice';
+import store from '../store/authmodule';
 
-Axios.defaults.baseURL = 'http://localhost:3000';
-
-const user = JSON.parse(localStorage.getItem('user'));
-const initialState = user
-    ? {status: {loggedIn: true}, user}
-    : {status: {loggedIn: false}, user: null};
-export const auth = {
-    namespaced: true,
-    state: initialState,
-    actions: {
-        refreshToken({ commit }, accessToken) {
-            commit('refreshToken', accessToken);
-        }
-    },
-    mutations: {
-        refreshToken(state, accessToken) {
-            state.status.loggedIn = true;
-            state.user = { ...state.user, accessToken: accessToken};
-        }
-    }
-};
 // https://www.bezkoder.com/vue-3-refresh-token/
+// https://www.bezkoder.com/vue-3-authentication-jwt/
+
+class AuthService {
+    login({ email, password }) {
+        return api.post("/login", {email, password})
+        .then((response) => {
+            if (response.data.accessToken) {
+                TokenService.setUser(response.data);
+            }
+            return response.data;
+        });
+    }
+    logout() {
+        TokenService.removeUser();
+    }
+    signup({ email, password }) {
+        return api.post("/signup", {email, password});
+    }
+}
+
+export default new AuthService();

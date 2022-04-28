@@ -77,15 +77,25 @@
 
 <script>
 import FooterComponent from './components/FooterComponent.vue';
+import EventBus from './common/eventbus';
+
 export default {
   components: {
     FooterComponent
   },
   methods: {
     logout() {
-      localStorage.removeItem('token');
+      this.$store.dispatch('api/auth/logout')
       this.$router.push('/');
     }
+  },
+  mounted() {
+    EventBus.on("logout", () => {
+      this.logout();
+    });
+  },
+  beforeUnmount() {
+    EventBus.remove("logout");
   }
-}
+};
 </script>
