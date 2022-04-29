@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             x:Class="BevLista.QRPage">
+    <ContentPage.Content>
+        <Grid VerticalOptions="CenterAndExpand"
+              HorizontalOptions="CenterAndExpand">
+
+        <zxing:ZXingScannerView x:Name="scanView"
+                                    OnScanResult="scanViewResult"
+                                    IsScanning="True"
+                                    WidthRequest="600"
+                                    HeightRequest="600"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"/>
+            <zxing:ZXingDefaultOverlay TopText="Illessze a kódot a négyzetbe!"/>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

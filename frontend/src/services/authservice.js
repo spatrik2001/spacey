@@ -1,9 +1,6 @@
 import api from './api';
 import TokenService from './tokenservice';
 
-// https://www.bezkoder.com/vue-3-refresh-token/
-// https://www.bezkoder.com/vue-3-authentication-jwt/
-
 class AuthService {
     login(user) {
         return api.post("/auth/login", { email: user.email, password: user.password})
@@ -17,8 +14,8 @@ class AuthService {
     logout() {
         TokenService.removeUser();
     }
-    signup(user) {
-        return api.post("/auth/signup", { email: user.email, password: user.hashedPassword});
+    register(user) {
+        return api.post("/auth/signup", { email: user.email, password: user.password});
     }
 }
 

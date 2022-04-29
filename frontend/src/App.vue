@@ -107,8 +107,8 @@ export default {
             return this.$store.state.auth.user;
         },
         showAdminBoard() {
-            if (this.currentUser && this.currentUser['roles']) {
-                return this.currentUser['roles'].includes('admin');
+            if (this.currentUser && this.currentUser['role']) {
+                return this.currentUser['role'].includes('admin');
             }
             return false;
         }

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BevLista.Views.RegisterPage" BackgroundImageSource="spacey.jpg">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>            
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Black"/>
+            <Setter Property="TextColor" Value="Yellow"/>
+            <Setter Property="WidthRequest" Value="200"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+        </Style>
+        <Style TargetType="StackLayout">
+            <Setter Property="VerticalOptions" Value="Center"/>
+
+        </Style>
+        <Style TargetType="Entry">
+            <Setter Property="PlaceholderColor" Value="Yellow"/>
+            <Setter Property="TextColor" Value="Yellow"/>
+            <Setter Property="WidthRequest" Value="200"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+        </Style>
+
+    </ContentPage.Resources>
+
+    <StackLayout x:Name="layout">
+
+        <Label Text="Username" Grid.Row="0" TextColor="Yellow"/>
+        <Entry x:Name="Entry_fNev" Grid.Row="1" Text="{Binding UserName}"/>
+        <Label Text="Password" Grid.Row="2" TextColor="Yellow"/>
+        <Entry x:Name="Entry_pw" Grid.Row="3" IsPassword="True" Text="{Binding Password}"/>
+        <Button Text="REGISTER" Grid.Row="4" Clicked="RegButtonClicked"/>
+    </StackLayout>
+</ContentPage>

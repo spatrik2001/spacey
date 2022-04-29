@@ -3,14 +3,21 @@ const roles = db.roles;
 const User = db.user;
 
 checkDuplicateEmail = (req, res, next) => {
-    User.findOne({email: req.body.email})
+    const email = req.body.email;
+    const password = req.body.password;
+    const confirmPassword = req.body.confirmPassword;
+    User.findOne({email: email})
         .exec((err, user) => {
             if (err) {
                 res.status(500).send({ message: err });
                 return;
             }
             if (user) {
-                res.status(400).send({ message: "Failed! Email is already in use!" });
+                res.status(400).send({ message: "Ezzel az email címmel már regisztráltak!" });
+                return;
+            }
+            else if (password != confirmPassword) {
+                res.status(400).send({ message: "A jelszavak nem egyeznek meg!" });
                 return;
             }
             next();

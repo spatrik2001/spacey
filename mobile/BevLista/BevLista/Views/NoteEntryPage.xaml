@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BevLista.Views.NoteEntryPage">
+    <StackLayout>
+        <Editor Placeholder="Írja be a bejegyzését" Text="{Binding Text}" HeightRequest="100"/>
+        <Grid ColumnDefinitions="*,*">
+            <Button Grid.Column="0" Text="Mentés" Clicked="OnSaveButtonClicked" BackgroundColor="Black" TextColor="Yellow"/>
+            <Button Grid.Column="1" Text="Törlés" Clicked="OnDeleteButtonClicked" BackgroundColor="Black" TextColor="Yellow"/>
+        </Grid>
+    </StackLayout>
+ 
+</ContentPage>

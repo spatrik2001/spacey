@@ -13,9 +13,9 @@ module.exports = function(app) {
         verifySignUp.checkDuplicateEmail,
         verifySignUp.checkRolesExisted
         ],
-        controller.signup
+        controller.register
     );
-    app.post('/api/auth/login', controller.signin);
+    app.post('/api/auth/login', controller.login);
 };
 
 // router.post('/refreshToken', async function(req, res, next) {

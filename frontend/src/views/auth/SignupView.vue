@@ -1,18 +1,20 @@
 <template>
     <div class="signup">
-        {{ error }}
+        <div v-if="message" class="container alert" :class="!successful ? 'alert-danger' : 'alert-success'">
+            {{ message }}
+        </div>
         <div class="login-form shadow">
-            <form method="post" @submit.prevent="signup">
+            <form @submit.prevent="handleRegister">
                 <img src="@/assets/img/logo.png" class="img-fluid">
                 <h4>Regisztráljon webáruházunkra!</h4>
                 <div class="mb-3 mt-5">
-                    <input type="email" v-model="email" class="mezo" name="email" id="email" placeholder="Email" required>
+                    <input type="email" class="mezo" name="email" id="email" placeholder="Email" required>
                 </div>
                 <div class="mb-3">
-                    <input type="password" v-model="password" class="mezo" name="password" id="password" placeholder="Jelszó" required>
+                    <input type="password" class="mezo" name="password" id="password" placeholder="Jelszó" required>
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="mezo" v-model="confirmPassword" name="confirmPassword" id="confirmPassword" placeholder="Jelszó újra" required>
+                    <input type="password" class="mezo" name="confirmPassword" id="confirmPassword" placeholder="Jelszó újra" required>
                 </div>
                 <button class="specialButton btn-sm" type="submit">Regisztráció</button>
                 <div class="pt-3 text-muted">
@@ -24,35 +26,37 @@
 </template>
 
 <script>
-import axios from 'axios';
 export default {
     name: 'SignupView',
     data() {
         return {
-            email: '',
-            password: '',
-            confirmPassword: '',
-            error: ''
+            message: '',
+            successful: true
+        }
+    },
+    computed: {
+        loggedIn() {
+            return this.$store.state.auth.status.loggedIn;
+        }
+    },
+    mounted() {
+        if (this.loggedIn) {
+            this.$router.push('/');
         }
     },
     methods: {
-        signup() {
-            let user = {
-                email: this.email,
-                password: this.password,
-                confirmPassword: this.confirmPassword
-            }
-            axios.post('http://localhost:3000/api/auth/signup', user)
-                .then(response => {
-                    console.log(response);
-                    this.error = '';
-                    this.$router.push('/login');
-                })
-                .catch(err => {
-                    console.log(err);
-                    this.error = err.response.data.error;
-                })
-        }
+        handleRegister(user) {
+            this.$store.dispatch('auth/register', user).then(
+                (data) => {
+                    this.successful = true;
+                    this.message = data.message;
+                },
+                (error) => {
+                    this.message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+                    this.successful = false;
+                }
+            );
+        },
     },
     created() {
         document.title = 'SpaceY · Regisztráció';
