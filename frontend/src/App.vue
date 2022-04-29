@@ -21,6 +21,11 @@
               </li>
             </ul>
             <ul class="nav navbar-nav ms-auto w-100 justify-content-end">
+              <li class="nav-item">
+                <a href="https://www.instagram.com/_spacey_official_/" target="_blank" class="nav-link">
+                  <i class="fab fa-instagram icon fw-bold"></i>
+                </a>
+              </li>
               <div v-if="currentUser">
                 <li class="nav-item">
                   <a href="/cart" class="nav-link <%= path === '/cart' ? 'active': '' %>">
@@ -90,7 +95,7 @@ export default {
     },
     methods: {
         logout() {
-            this.$store.dispatch('api/auth/logout')
+            this.$store.dispatch('auth/logout')
             this.$router.push('/');
         }
     },

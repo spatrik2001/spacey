@@ -14,9 +14,16 @@ const transporter = nodemailer.createTransport(sendgridTransport({
 }));
 
 exports.register = (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    const confirmPassword = req.body.confirmPassword;
+    if (password != confirmPassword) {
+        res.status(400).send({ message: "A jelszavak nem egyeznek meg!" });
+         return;
+    }
     const user = new User({
-        email: req.body.email,
-        password: bcrypt.hash(req.body.password, 8)
+        email: email,
+        password: bcrypt.hashSync(password, 8)
     });
     user.save((err, user) => {
         if (err) {

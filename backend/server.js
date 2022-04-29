@@ -4,6 +4,7 @@ const app = express();
 const db = require('./app/models/index');
 
 const Role = db.role;
+const ProductRoutes = require('./app/routes/product');
 
 var corsOptions = {
   origin: "http://localhost:8080"
@@ -34,6 +35,8 @@ db.mongoose
 
 require('./app/routes/auth')(app);
 require('./app/routes/user')(app);
+app.use('/api/products', ProductRoutes);
+
 
 function initial() {
   Role.collection.estimatedDocumentCount((err, count) => {

@@ -10,7 +10,7 @@ import OrderView from '../views/shop/OrderView.vue';
 import SignupView from '../views/auth/SignupView.vue';
 import LoginView from '../views/auth/LoginView.vue';
 import ResetView from '../views/auth/ResetView.vue';
-import AdminView from '../views/admin/AdminView.vue';
+const AdminView = () => import('../views/admin/AdminView.vue');
 
 const routes = [
   {path: '/', name: 'home', component: HomeView},
@@ -33,7 +33,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    const publicPages = ['/login', '/signup', '/reset', '/home', '/products', '/about', '/contact'];
+    const publicPages = ['/', '/login', '/signup', '/reset', '/home', '/products', '/about', '/contact'];
     const authRequired = !publicPages.includes(to.path);
     const loggedIn = localStorage.getItem('user');
     if (authRequired && !loggedIn) {

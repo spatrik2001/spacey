@@ -4,8 +4,6 @@ const User = db.user;
 
 checkDuplicateEmail = (req, res, next) => {
     const email = req.body.email;
-    const password = req.body.password;
-    const confirmPassword = req.body.confirmPassword;
     User.findOne({email: email})
         .exec((err, user) => {
             if (err) {
@@ -14,10 +12,6 @@ checkDuplicateEmail = (req, res, next) => {
             }
             if (user) {
                 res.status(400).send({ message: "Ezzel az email címmel már regisztráltak!" });
-                return;
-            }
-            else if (password != confirmPassword) {
-                res.status(400).send({ message: "A jelszavak nem egyeznek meg!" });
                 return;
             }
             next();

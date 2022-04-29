@@ -4,17 +4,17 @@
             {{ message }}
         </div>
         <div class="login-form shadow">
-            <form @submit.prevent="handleRegister">
+            <form @submit="signup">
                 <img src="@/assets/img/logo.png" class="img-fluid">
                 <h4>Regisztráljon webáruházunkra!</h4>
                 <div class="mb-3 mt-5">
-                    <input type="email" class="mezo" name="email" id="email" placeholder="Email" required>
+                    <input type="email" v-model="email" class="mezo" name="email" id="email" placeholder="Email" required>
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="mezo" name="password" id="password" placeholder="Jelszó" required>
+                    <input type="password" v-model="password" class="mezo" name="password" id="password" placeholder="Jelszó" required>
                 </div>
                 <div class="mb-3">
-                    <input type="password" class="mezo" name="confirmPassword" id="confirmPassword" placeholder="Jelszó újra" required>
+                    <input type="password" v-model="confirmPassword" class="mezo" name="confirmPassword" id="confirmPassword" placeholder="Jelszó újra" required>
                 </div>
                 <button class="specialButton btn-sm" type="submit">Regisztráció</button>
                 <div class="pt-3 text-muted">
@@ -30,6 +30,9 @@ export default {
     name: 'SignupView',
     data() {
         return {
+            email: '',
+            password: '',
+            confirmPassword: '',
             message: '',
             successful: true
         }
@@ -45,7 +48,12 @@ export default {
         }
     },
     methods: {
-        handleRegister(user) {
+        signup() {
+            let user = {
+                email: this.email,
+                password: this.password,
+                confirmPassword: this.confirmPassword
+            };
             this.$store.dispatch('auth/register', user).then(
                 (data) => {
                     this.successful = true;
@@ -56,7 +64,7 @@ export default {
                     this.successful = false;
                 }
             );
-        },
+        }
     },
     created() {
         document.title = 'SpaceY · Regisztráció';

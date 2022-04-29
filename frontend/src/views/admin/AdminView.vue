@@ -62,10 +62,25 @@
 </template>
 
 <script>
+import UserService from '@/services/userservice';
 export default {
     name: 'AdminView',
+    data() {
+        return {
+            content: ''
+        }
+    },
     created() {
         document.title = 'SpaceY · Admin';
+    },
+    mounted() {
+        UserService.getAdminBoard().then(
+            (response) => {
+                this.content = response.data;
+            }, (error) => {
+                this.content = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+            }
+        )
     }
 }
 </script>

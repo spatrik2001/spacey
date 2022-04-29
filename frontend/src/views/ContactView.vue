@@ -24,7 +24,7 @@
                                         </div>
                                         <div class="col-md-12">
                                             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                            <input type="submit" class="specialButton btn-sm" value="Küldés">
+                                            <input type="button" class="specialButton btn-sm" value="Küldés">
                                         </div>
                                     </div>
                                 </form>
