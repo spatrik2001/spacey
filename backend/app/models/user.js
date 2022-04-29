@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   email: {
     type: String,
-    unique: true,
     required: true
   },
   password: {
@@ -26,10 +25,12 @@ const userSchema = new Schema({
       }
     ]
   },
-  roles: {
-    type: Schema.Types.ObjectId,
-    ref: 'Role'
-  }
+  role: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Role'
+    }
+  ]
 });
 
 userSchema.methods.addToCart = function(product) {

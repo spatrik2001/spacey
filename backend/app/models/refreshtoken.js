@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
-const app = require('../../app');
+const app = require('../../server');
 
 const Schema = mongoose.Schema;
 const RefreshTokenSchema = new Schema({

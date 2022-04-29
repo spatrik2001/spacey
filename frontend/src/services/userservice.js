@@ -1,14 +1,16 @@
 import api from './authservice';
+import authHeader from './auth-header';
 
 class UserService {
     getPublicContent() {
-      return api.get('/test/all');
+        return api.get('/user');
     }
     getUserBoard() {
-      return api.get('/test/user');
+        return api.get('/user' + 'user', { headers: authHeader() });
     }
     getAdminBoard() {
-      return api.get('/test/admin');
+        return api.get('/user' + 'admin', { headers: authHeader() });
     }
-  }
-  export default new UserService();
+}
+
+export default new UserService();

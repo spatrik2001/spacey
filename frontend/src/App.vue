@@ -21,37 +21,37 @@
               </li>
             </ul>
             <ul class="nav navbar-nav ms-auto w-100 justify-content-end">
-              <!-- <% if (isAuthenticated) { %> -->
-              <li class="nav-item">
-                <a href="/cart" class="nav-link <%= path === '/cart' ? 'active': '' %>">
-                  <i class="fas fa-rocket icon"></i>
-                </a> 
-              </li>
-              <!-- <% } %> -->
+              <div v-if="currentUser">
+                <li class="nav-item">
+                  <a href="/cart" class="nav-link <%= path === '/cart' ? 'active': '' %>">
+                    <i class="fas fa-rocket icon"></i>
+                  </a> 
+                </li>
+              </div>
               <li class="nav-item dropdown">
                 <a href="#" class="nav-link" id="navbarSupportedContent" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i class="fas fa-id-card-alt icon"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarSupportedContent">
-                  <!-- <% if (isAuthenticated) { %> -->
-                  <li class="nav-item">
-                    <a href="/orders" class="nav-link <%= path === '/orders' ? 'active' : '' %>">Rendelések</a> 
-                  </li>
-                  <li class="nav-item">
-                    <a href="/admin/products" class="nav-link <%= path === '/admin/products' ? 'active' : '' %>">Admin</a>
-                  </li>
-                  <li class="nav-item">
-                      <button class="gomb" @click="logout">Kijelentkezés</button>
-                  </li>
-                <!-- <% } %>
-                <% if (!isAuthenticated) { %> -->
-                <li class="nav-item">
-                  <a href="/login" class="nav-link <%= path === '/login' ? 'active' : '' %>">Bejelentkezés</a> 
-                </li>
-                <li class="nav-item">
-                  <a href="/signup" class="nav-link <%= path === '/signup' ? 'active' : '' %>">Regisztráció</a>
-                </li>
-                <!-- <% } %>     -->
+                  <div v-if="currentUser">
+                    <li class="nav-item">
+                      <a href="/orders" class="nav-link <%= path === '/orders' ? 'active' : '' %>">Rendelések</a> 
+                    </li>
+                    <li class="nav-item" v-if="showAdmin">
+                      <a href="/admin/products" class="nav-link <%= path === '/admin/products' ? 'active' : '' %>">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="gomb" @click="logout">Kijelentkezés</button>
+                    </li>
+                  </div>
+                  <div v-else>
+                    <li class="nav-item">
+                      <a href="/login" class="nav-link <%= path === '/login' ? 'active' : '' %>">Bejelentkezés</a> 
+                    </li>
+                    <li class="nav-item">
+                      <a href="/signup" class="nav-link <%= path === '/signup' ? 'active' : '' %>">Regisztráció</a>
+                    </li>
+                  </div>
               </ul>
             </li>
           </ul>
@@ -81,21 +81,37 @@ import EventBus from './common/eventbus';
 
 export default {
   components: {
-    FooterComponent
-  },
-  methods: {
-    logout() {
-      this.$store.dispatch('api/auth/logout')
-      this.$router.push('/');
+        FooterComponent
+    },
+    data() {
+      return {
+        loggedIn: false
+      }
+    },
+    methods: {
+        logout() {
+            this.$store.dispatch('api/auth/logout')
+            this.$router.push('/');
+        }
+    },
+    mounted() {
+        EventBus.on("logout", () => {
+            this.logout();
+        });
+    },
+    beforeUnmount() {
+        EventBus.remove("logout");
+    },
+    computed: {
+        currentUser() {
+            return this.$store.state.auth.user;
+        },
+        showAdminBoard() {
+            if (this.currentUser && this.currentUser['roles']) {
+                return this.currentUser['roles'].includes('admin');
+            }
+            return false;
+        }
     }
-  },
-  mounted() {
-    EventBus.on("logout", () => {
-      this.logout();
-    });
-  },
-  beforeUnmount() {
-    EventBus.remove("logout");
-  }
 };
 </script>

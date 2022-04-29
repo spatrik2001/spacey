@@ -1,9 +1,11 @@
-const bcrypt = require('bcryptjs');
+const db = require("../models");
+const User = db.user;
+const Role = db.role;
+var jwt = require("jsonwebtoken");
+var bcrypt = require("bcryptjs");
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
 const crypto = require('crypto');
-
-const User = require('../models/user');
 
 const transporter = nodemailer.createTransport(sendgridTransport({
   auth: {
@@ -11,165 +13,109 @@ const transporter = nodemailer.createTransport(sendgridTransport({
   }
 }));
 
-exports.getLogin = (req, res, next) => {
-  res.render('auth/login', {
-    path: '/login',
-    pageTitle: 'SpaceY · Bejelentkezés',
-    errorMessage: req.flash('error')
-  });
-};
-
-exports.getSignup = (req, res, next) => {
-  res.render('auth/signup', {
-    path: '/signup',
-    pageTitle: 'SpaceY · Regisztráció',
-    errorMessage: req.flash('error')
-  });
-};
-
-exports.postLogin = (req, res, next) => {
-  const email = req.body.email;
-  const password = req.body.password;
-  User.findOne({ email: email })
-    .then(user => {
-      if (!user) {
-        req.flash('error', 'Helytelen email vagy jelszó.');
-        return res.redirect('/login');
-      }
-      bcrypt.compare(password, user.password)
-        .then(doMatch => {
-          if (doMatch) {
-            req.session.isLoggedIn = true;
-            req.session.user = user;
-            return req.session.save(err => {
-              res.redirect('/');
-            });
-          }
-          res.redirect('/login');
+exports.signup = (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    const confirmPassword = req.body.confirmPassword;
+    User.findOne({ email: email})
+        .then(() => {
+            if (password != confirmPassword)
+            {
+                return res.status(401).send({ error: 'A jelszavak nem egyeznek meg!' });
+            }
+            return bcrypt
+                .hashSync(password, 12)
+                .then(hashedPassword => {
+                      const user = new User({
+                          email: email,
+                          password: hashedPassword,
+                          cart: { items: [] },
+                          role: role    
+                      })
+                      return user.save((err, user) => {
+                          if (err) {
+                              res.status(500).send({ message: err });
+                              return;
+                          }
+                          if (req.body.role) {
+                              Role.find(
+                              {
+                                  name: { $in: req.body.role }
+                              },
+                              (err, roles) => {
+                                  if (err) {
+                                      res.status(500).send({ message: err });
+                                      return;
+                                  }
+                                  user.role = role.map(role => role._id);
+                                  user.save(err => {
+                                      if (err) {
+                                          res.status(500).send({ message: err });
+                                          return;
+                                      }
+                                      res.send({ message: "Sikeres regisztráció!" });
+                                  });
+                              }
+                          );
+                        } else {
+                            Role.findOne({ name: "user" }, (err, role) => {
+                                if (err) {
+                                  res.status(500).send({ message: err });
+                                  return;
+                                }
+                                user.role = [role._id];
+                                user.save(err => {
+                                if (err) {
+                                    res.status(500).send({ message: err });
+                                    return;
+                                }
+                                res.send({ message: "Sikeres regisztráció!" });
+                            });
+                        });
+                    }
+                }
+            );
         })
-    })
+        .then(result => {
+            return transporter.sendMail({
+                to: email,
+                from: 'scheuer.patrik@students.jedlik.eu',
+                subject: 'Sikeres regisztráció',
+                html: '<h1>Köszönjük, hogy regisztrált weboldalunkra!</h1>'
+            })
+        })             
+    })    
 };
-
-exports.postSignup = (req, res, next) => {
-  const email = req.body.email;
-  const password = req.body.password;
-  const confirmPassword = req.body.confirmPassword;
-  User.findOne({ email: email })
-    .then(userDoc => {
-      if (userDoc) {
-        req.flash('error', 'Ezzel az email címmel már regisztráltak.');
-        return res.redirect('/signup');
-      }
-      else if (password != confirmPassword)
-      {
-        req.flash('error', 'A jelszavak nem egyeznek meg.');
-        return res.redirect('/signup');
-      }
-      return bcrypt
-        .hash(password, 12)
-        .then(hashedPassword => {
-          const user = new User({
-            email: email,
-            password: hashedPassword,
-            cart: { items: [] },
-            role: 'User'
-        })
-        return user.save();
-    })
-    .then(result => {
-      res.redirect('/login');
-      return transporter.sendMail({
-        to: email,
-        from: 'scheuer.patrik@students.jedlik.eu',
-        subject: 'Sikeres regisztráció',
-        html: '<h1>Köszönjük, hogy regisztrált weboldalunkra!</h1>'
-      })
-    })
-  })
-  .catch(err => console.log(err));
-};
-
-exports.postLogout = (req, res, next) => {
-  req.session.destroy(err => {
-    res.redirect('/');
-  });
-};
-
-exports.getReset = (req, res, next) => {
-  res.render('auth/reset', {
-    path: '/reset',
-    pageTitle: 'SpaceY · Elfelejtett jelszó',
-    errorMessage: req.flash('error')
-  });
-};
-
-exports.postReset = (req, res, next) => {
-  crypto.randomBytes(32, (err, buffer) => {
-    if (err) {
-      return res.redirect('/reset');
-    }
-    const token = buffer.toString('hex');
-    User.findOne({ email: req.body.email })
-      .then(user => {
-        if (!user) {
-          req.flash('error', 'Ezzel az email címmel nincs felhasználó regisztrálva.');
-          return res.redirect('/reset');
+exports.signin = (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    User.findOne({ email: email })
+    .populate("role", "-__v")
+    .exec((err, user) => {
+        if (err) {
+            return res.status(500).send({ message: err });
         }
-        user.resetToken = token;
-        user.resetTokenExpiration = Date.now() + 3600000;
-        return user.save();
-      })
-      .then(result => {
-        res.redirect('/');
-        transporter.sendMail({
-          to: req.body.email,
-          from: 'scheuer.patrik@students.jedlik.eu',
-          subject: 'Jelszó helyreállítás',
-          html: `
-              <p>You requested a password reset</p>
-              <p>Click this <a href="http://localhost:3000/reset/${token}">link</a> to set a new password.</p>`
-        })
-      })
-  });
-};
-
-exports.getNewPassword = (req, res, next) => {
-  const token = req.params.token;
-  User.findOne({ resetToken: token, resetTokenExpiration: { $gt: Date.now() }})
-    .then(user => {
-      if (!user)
-      {
-        return res.redirect('/');
-        // return next();
-      }
-      res.render('auth/new-password', {
-        path: '/new-password',
-        pageTitle: 'SpaceY · Új jelszó igénylése',
-        errorMessage: req.flash('error'),
-        userId: user._id.toString(),
-        passwordToken: token
-      });
-    })
-};
-
-exports.postNewPassword = (req, res, next) => {
-  const newPassword = req.body.password;
-  const userId = req.body.userId;
-  const passwordToken = req.body.passwordToken;
-  let resetuser;
-
-  User.findOne({ resetToken: passwordToken, resetTokenExpiration: { $gt: Date.now() }, _id: userId })
-    .then(user => {
-      resetUser = user;
-      return bcrypt.hash(newPassword, 12);
-    })
-    .then(hashedPassword => {
-      resetUser.password = hashedPassword;
-      resetUser.resetToken = undefined;
-      resetUser.resetTokenExpiration = undefined;
-      return resetUser.save();
-    })
-    .then(result => {
-      res.redirect('/login');
-    })
+        if (!user) {
+            return res.status(404).send({ message: "A felhasználó nem található!" });
+        }
+        var passwordIsValid = bcrypt.compareSync(password, user.password);
+        if (!passwordIsValid) {
+            return res.status(401).send({
+                accessToken: null,
+                message: "Helytelen jelszó!"
+            });
+        }
+        var token = jwt.sign({ id: user.id }, 'secretkey', {expiresIn: 86400});
+        var authorities = [];
+        for (let i = 0; i < user.role.length; i++) {
+            authorities.push(user.role[i].name);
+        }
+        res.status(200).send({
+            id: user._id,
+            username: user.username,
+            email: user.email,
+            role: authorities,
+            accessToken: token
+        });
+    });
 };

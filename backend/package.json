@@ -4,7 +4,7 @@
   "description": "Cool features with weird implementations",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",

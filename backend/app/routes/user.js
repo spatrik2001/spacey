@@ -1,31 +1,15 @@
-const express = require('express');
-const router = express.Router();
-const bcrypt = require('bcryptjs');
-const nodemailer = require('nodemailer');
-const sendgridTransport = require('nodemailer-sendgrid-transport');
-const crypto = require('crypto');
+const { authJwt } = require('../middleware');
+const controller = require('../controllers/user');
 
-const User = require('../models/user');
-
-router.post('/login', function(req, res, next) {
-    const email = req.body.email;
-    const password = req.body.password;
-    User
-    .findOne({email: email})
-    .then(user => {
-        if(!user)
-            res.json({ 'hiba': 'Helytelen email vagy jelszó!'});
-        bcrypt.compare(password, user.password)
-        .then(doMatch => {
-            if (doMatch) {
-                req.session.isLoggedIn = true;
-                req.session.user = user;
-                return req.session.save(err => {
-                    console.log(err);
-                });
-            }
-        })
-    })
-});
-
-module.exports = router;
+module.exports = function(app) {
+    app.use(function(req, res, next) {
+        res.header(
+            "Access-Control-Allow-Headers",
+            "x-access-token, Origin, Content-Type, Accept"
+        );
+        next();
+    });
+    app.get('/api/user/all', controller.allAccess);
+    app.get('/api/user/user', [authJwt.verifyToken], controller.userBoard);
+    app.get('/api/user/admin', [authJwt.verifyToken, authJwt.isAdmin], controller.adminBoard);
+};
