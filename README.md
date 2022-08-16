@@ -4,14 +4,14 @@ Egy érdekes és szemkápráztató webáruház, ami Vue.js-ben készült. Ehhez 
 ## Tulajdonságok
 1. A felhasználó képes fiókot létrehozni, abba bejelentkezni, illetve új jelszót kérni email cím segítségével.
 2. CRUD műveletek
-    * A felhasználó hozzá tud adni termékeket és azokat törölni.
+    * A felhasználó hozzá tud adni termékeket a kosárhoz és azokat törölni.
     * Az adminisztrátor hozzá tud adni termékeket a kínálathoz.
     * Az adminisztrátor törölheti vagy szerkesztheti a hozzáadott termékeket.
 3. Biztonság
     * A felhasználó jelszava titkosításra kerül a fiók létrehozása során.
 
 ## Felhasznált eszközök
-A felhasználáshoz a következők kerültek felhasználásra: Vue.js, Node.js, MongoDB, Bootstrap, Express
+A projekt létrehozásakor a következő nyelvek, illetve adatbázis-eszközök kerültek felhasználásra: Vue.js, Node.js, MongoDB, Bootstrap, Express
 
 ## Telepítés
 1. VueCLI [telepítése](https://cli.vuejs.org/guide/installation.html)
@@ -24,5 +24,3 @@ A felhasználáshoz a következők kerültek felhasználásra: Vue.js, Node.js, 
     const MONGODB_URI = 'mongodb://127.0.0.1:27017/spacey';
 ```
 6. A szerverek elindítása: `npm start`(backend) és `npm run serve`(frontend)
-
-## Képernyőképek
